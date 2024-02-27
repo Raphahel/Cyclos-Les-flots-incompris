@@ -17,6 +17,7 @@ public class Ile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log("Trigger enter");
         if (other.CompareTag("Player"))
         {
             cadreNom.enabled = true;
