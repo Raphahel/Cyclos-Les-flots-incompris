@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class Ile : MonoBehaviour
 {
@@ -16,7 +17,16 @@ public class Ile : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        cadreNom.enabled = true;
-        cadreNom.text = nom;
+        if (other.CompareTag("Player"))
+        {
+            cadreNom.enabled = true;
+            cadreNom.text = nom;
+            changeScene();
+        }
+    }
+
+    private void changeScene()
+    {
+        SceneManager.LoadScene(nom);
     }
 }
