@@ -381,6 +381,7 @@ GameObject:
   - component: {fileID: 408199284}
   - component: {fileID: 408199285}
   - component: {fileID: 408199286}
+  - component: {fileID: 408199287}
   m_Layer: 6
   m_Name: Boid
   m_TagString: Untagged
@@ -521,6 +522,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 2
   repulsionForce: 2
+--- !u!65 &408199287
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 408199278}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &428919453
 GameObject:
   m_ObjectHideFlags: 0
@@ -537,6 +559,7 @@ GameObject:
   - component: {fileID: 428919459}
   - component: {fileID: 428919460}
   - component: {fileID: 428919461}
+  - component: {fileID: 428919462}
   m_Layer: 6
   m_Name: Boid 2
   m_TagString: Untagged
@@ -677,6 +700,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 2
   repulsionForce: 2
+--- !u!65 &428919462
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 428919453}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &495596952
 GameObject:
   m_ObjectHideFlags: 0
@@ -1602,6 +1646,7 @@ GameObject:
   - component: {fileID: 1499502028}
   - component: {fileID: 1499502029}
   - component: {fileID: 1499502030}
+  - component: {fileID: 1499502031}
   m_Layer: 6
   m_Name: Boid 3
   m_TagString: Untagged
@@ -1742,6 +1787,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 2
   repulsionForce: 2
+--- !u!65 &1499502031
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1499502022}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1672249686
 GameObject:
   m_ObjectHideFlags: 0
@@ -1839,6 +1905,7 @@ GameObject:
   - component: {fileID: 1906429393}
   - component: {fileID: 1906429394}
   - component: {fileID: 1906429395}
+  - component: {fileID: 1906429396}
   m_Layer: 6
   m_Name: Boid 4
   m_TagString: Untagged
@@ -1979,6 +2046,27 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   radius: 2
   repulsionForce: 2
+--- !u!65 &1906429396
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1906429387}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2041991179
 GameObject:
   m_ObjectHideFlags: 0
@@ -1994,7 +2082,7 @@ GameObject:
   - component: {fileID: 2041991180}
   - component: {fileID: 2041991187}
   - component: {fileID: 2041991186}
-  m_Layer: 6
+  m_Layer: 7
   m_Name: Serpent
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2109,13 +2197,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2041991179}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.0015904816, y: 0.0016113436, z: -0.71143645, w: 0.7027468}
+  m_LocalRotation: {x: 0, y: 0, z: -0.7071068, w: 0.7071068}
   m_LocalPosition: {x: -7.73, y: 1.95, z: 3.3}
   m_LocalScale: {x: 0.3428124, y: 2.34557, z: 0.3428124}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0.259, y: 0, z: -90.704}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: -90}
 --- !u!195 &2041991186
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2150,6 +2238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cc13e1e845b18b84c909aa60ca0b2eee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  wanderRadius: 30
 --- !u!1 &2066426198
 GameObject:
   m_ObjectHideFlags: 0

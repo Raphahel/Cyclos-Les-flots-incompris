@@ -7,6 +7,9 @@ using BehaviorTree;
 
 public class SerpentBT : AITree
 {
+
+    public static float fovRange = 6f;
+    public float wanderRadius;
     public static NavMeshAgent agent;
 
     // Start is called before the first frame update
@@ -17,7 +20,13 @@ public class SerpentBT : AITree
 
     protected override Node SetupTree()
     {
-        Node root = new TaskWander(agent);
+        Node root = new Selector(new List<Node> {
+                new Sequence ( new List<Node> {
+                    new CheckPreyInFOVRange(gameObject.transform),
+                    new TaskGoToPrey(gameObject.transform, agent)
+                }),
+                new TaskWander(agent, wanderRadius)
+            });
         return root;
     }
 }

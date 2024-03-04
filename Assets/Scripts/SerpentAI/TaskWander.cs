@@ -7,15 +7,17 @@ using BehaviorTree;
 
 public class TaskWander : Node
 {
-    public float wanderRadius;
+    
     public float wanderTime = 5f;
     private float wanderTimer = 0f;
 
     private NavMeshAgent agent;
+    private float wanderRadius;
 
-    public TaskWander(NavMeshAgent agent)
+    public TaskWander(NavMeshAgent agent, float wanderRadius)
     {
         this.agent = agent;
+        this.wanderRadius = wanderRadius;
     }
 
     public override NodeState Evaluate()

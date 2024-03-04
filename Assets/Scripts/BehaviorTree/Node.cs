@@ -56,22 +56,17 @@ namespace BehaviorTree
 
             Node node = parent;
 
-            while (node != null)
+            if (node != null)
             {
                 value = node.GetData(key);
-                if (value != null)
-                {
-                    return value;
-                }
-                node = node.parent;
             }
-            return null;
+            return value;
         }
 
         public bool ClearData(string key)
         {
-            object value = null;
-            if (_dataContext.TryGetValue(key, out value))
+            bool cleared = false;
+            if (_dataContext.ContainsKey(key))
             {
                 _dataContext.Remove(key);
                 return true;
@@ -79,16 +74,11 @@ namespace BehaviorTree
 
             Node node = parent;
 
-            while (node != null)
+            if (node != null)
             {
-                value = node.ClearData(key);
-                if (value != null)
-                {
-                    return true;
-                }
-                node = node.parent;
+                cleared = node.ClearData(key);
             }
-            return false;
+            return cleared;
         }
     }
 }
