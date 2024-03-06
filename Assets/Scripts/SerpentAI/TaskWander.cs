@@ -7,27 +7,35 @@ using BehaviorTree;
 
 public class TaskWander : Node
 {
-    
-    public float wanderTime = 5f;
+
+    private float wanderTime = Random.Range(1f, 15f);
     private float wanderTimer = 0f;
 
     private NavMeshAgent agent;
     private float wanderRadius;
+    private Vector3 destination;
 
     public TaskWander(NavMeshAgent agent, float wanderRadius)
     {
         this.agent = agent;
         this.wanderRadius = wanderRadius;
+        this.destination = agent.transform.position;
     }
 
     public override NodeState Evaluate()
     {
-        wanderTimer += Time.deltaTime;
+        /*wanderTimer += Time.deltaTime;
         if (wanderTimer >= wanderTime)
         {
-            Vector3 newPos = RandomNavSphere(agent.transform.position, wanderRadius, -1);
-            agent.SetDestination(newPos);
+            destination = RandomNavSphere(agent.transform.position, wanderRadius, -1);
+            agent.SetDestination(destination);
             wanderTimer = 0f;
+            wanderTime = Random.Range(1f, 10f);
+        }*/
+        if (agent.remainingDistance < 0.1f)
+        {
+            destination = RandomNavSphere(agent.transform.position, wanderRadius, -1);
+            agent.SetDestination(destination);
         }
         state = NodeState.RUNNING;
         return state;
