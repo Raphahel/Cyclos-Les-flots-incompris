@@ -27,7 +27,7 @@ Material:
   m_ModifiedSerializedProperties: 0
   m_ValidKeywords: []
   m_InvalidKeywords: []
-  m_LightmapFlags: 4
+  m_LightmapFlags: 0
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: 3000
@@ -104,22 +104,23 @@ Material:
     - _ClearCoatSmoothness: 0
     - _Cull: 2
     - _Cutoff: 0.5
-    - _Depth: 0.311
+    - _Depth: 1
     - _DetailAlbedoMapScale: 1
     - _DetailNormalMapScale: 1
     - _DistanceFade: 10
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamAmount: 0.52
-    - _FoamCutoff: 1.57
+    - _FoamAmount: 6.49
+    - _FoamCutoff: 0.15
     - _FoamDepth: -0.1
-    - _FoamSpeed: 0.13
+    - _FoamSpeed: 0.92
     - _FoamStrength: 1.39
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
+    - _Noise: 0.09
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -127,33 +128,37 @@ Material:
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
+    - _Smothnesss: 0.725
     - _SpecularHighlights: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Strength: 0.08
+    - _Strength: 0.038
     - _Surface: 0
-    - _WaveLength: 10
-    - _WaveLength2: -2
+    - _WaveLength: 15
+    - _WaveLength2: 10
+    - _WaveLength3: 30
     - _WaveRepetition: 10
     - _WaveSpeed: 0
     - _WaveSpeed2: 1
-    - _WaveSteepness: 0.076
-    - _WaveSteepness2: 0
+    - _WaveSteepness: 0.037
+    - _WaveSteepness2: 0.107
+    - _WaveSteepness3: 0.03
     - _WaveStrength: 0.03
     - _WorkflowMode: 1
     - _ZWrite: 1
-    - _foamSize: 1.77
+    - _foamSize: 1.93
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeepWaterColor: {r: 0.05124384, g: 0.0040049935, b: 0.8490566, a: 0.49803922}
+    - _DeepWaterColor: {r: 0.17051966, g: 0.14017446, b: 0.6603774, a: 0.972549}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 3.482202, g: 3.482202, b: 3.482202, a: 1}
     - _Profond: {r: 0.006802559, g: 0, b: 1, a: 0.7647059}
-    - _ShallowWaterColor: {r: 0.39716092, g: 0.40742165, b: 0.7075472, a: 0.5686275}
+    - _ShallowWaterColor: {r: 0.36912602, g: 0.39456514, b: 0.990566, a: 0.72156864}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Surface: {r: 0.21813807, g: 0.34871283, b: 0.8113207, a: 0.4392157}
     - _WaterColor: {r: 0.3445621, g: 0.44450375, b: 0.8207547, a: 0}
-    - _WaveDirection: {r: 1, g: 0, b: 0, a: 0}
-    - _WaveDirection2: {r: 0, g: 0, b: 0, a: 0}
+    - _WaveDirection: {r: 1, g: 1, b: 0, a: 0}
+    - _WaveDirection2: {r: 0.2, g: 0.5, b: 0.2, a: 0}
+    - _WaveDirection_3: {r: 0, g: 0.3, b: 1, a: 0}
   m_BuildTextureStacks: []
