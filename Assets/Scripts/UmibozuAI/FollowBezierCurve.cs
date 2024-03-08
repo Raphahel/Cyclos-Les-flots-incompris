@@ -1,17 +1,20 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.AI.Navigation;
 using UnityEngine;
 
 using UnityEngine.AI;
 
 public class FollowBezierCurve : MonoBehaviour
 {
-    [SerializeField] private Transform[] routes;
+    //[SerializeField] private Transform[] routes;
     //private int routeToGo;
     private float tParam;
     private Vector3 objectPosition;
     [SerializeField] private float speedModifier;
+    NavMeshSurface navMeshSurface;
     //private bool coroutineAllowed;
+    [SerializeField] private float delay = 5f;
 
     private float radius;
 
@@ -21,7 +24,8 @@ public class FollowBezierCurve : MonoBehaviour
         //routeToGo = 0;
         tParam = 0f;
         //coroutineAllowed = true;
-        radius = 100f;
+        radius = 50f;
+        navMeshSurface = FindObjectOfType<NavMeshSurface>();
         StartCoroutine(GoByTheRoute());
     }
 
@@ -40,11 +44,12 @@ public class FollowBezierCurve : MonoBehaviour
     private IEnumerator GoByTheRoute()
 
     {
+        
 
-        Vector3 p0 = RandomNavSphere(transform.position, radius, -1);
-        Vector3 p1 = RandomNavSphere(transform.position, radius, -1);
-        Vector3 p2 = RandomNavSphere(transform.position, radius, -1);
-        Vector3 p3 = RandomNavSphere(transform.position, radius, -1);
+        Vector3 p0 = RandomNavSphere(navMeshSurface.transform.position, radius, -1);
+        Vector3 p1 = RandomNavSphere(navMeshSurface.transform.position, radius, -1);
+        Vector3 p2 = RandomNavSphere(navMeshSurface.transform.position, radius, -1);
+        Vector3 p3 = RandomNavSphere(navMeshSurface.transform.position, radius, -1);
 
         while (tParam < 1)
         {
@@ -64,16 +69,16 @@ public class FollowBezierCurve : MonoBehaviour
             routeToGo = 0;
 
         }*/
-
+        yield return new WaitForSeconds(delay);
         StartCoroutine(GoByTheRoute(p3));
     }
 
     private IEnumerator GoByTheRoute(Vector3 startPosition)
     {
         Vector3 p0 = startPosition;
-        Vector3 p1 = RandomNavSphere(transform.position, radius, -1);
-        Vector3 p2 = RandomNavSphere(transform.position, radius, -1);
-        Vector3 p3 = RandomNavSphere(transform.position, radius, -1);
+        Vector3 p1 = RandomNavSphere(navMeshSurface.transform.position, radius, -1);
+        Vector3 p2 = RandomNavSphere(navMeshSurface.transform.position, radius, -1);
+        Vector3 p3 = RandomNavSphere(navMeshSurface.transform.position, radius, -1);
 
         while (tParam < 1)
         {
@@ -94,6 +99,7 @@ public class FollowBezierCurve : MonoBehaviour
 
         }*/
 
+        yield return new WaitForSeconds(5f);
         StartCoroutine(GoByTheRoute(p3));
     }
 

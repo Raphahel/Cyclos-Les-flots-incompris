@@ -8,8 +8,8 @@ using BehaviorTree;
 public class TaskWander : Node
 {
 
-    private float wanderTime = Random.Range(1f, 15f);
-    private float wanderTimer = 0f;
+    /*private float wanderTime = Random.Range(1f, 15f);
+    private float wanderTimer = 0f;*/
 
     private NavMeshAgent agent;
     private float wanderRadius;
