@@ -9,6 +9,8 @@ public class BoidAlignmentBehavior : MonoBehaviour
 
     public float radius;
 
+    public float forceModifier;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,15 +20,28 @@ public class BoidAlignmentBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var boids = FindObjectsOfType<Boid>();
-        var average = Vector3.zero;
-        var found = 0;
+        HashSet<Boid> neighboringBoids = boid.linkedQuadTree.FindDataInRange(boid.position2D, radius);
+        Vector3 average = Vector3.zero;
+        int found = 0;
 
-        foreach (var boid in boids)
+        /*foreach (var boid in neighboringBoids)
         {
             if (boid != this.boid)
             {
-                var diff = boid.transform.position - this.transform.position;
+                var diff = boid.transform.position - transform.position;
+                if (diff.magnitude < radius)
+                {
+                    average += boid.velocity;
+                    found += 1;
+                }
+            }
+        }*/ 
+
+        foreach (var boid in neighboringBoids)
+        {
+            if (boid.position2D != this.boid.position2D)
+            {
+                var diff = boid.position2D - this.boid.position2D;
                 if (diff.magnitude < radius)
                 {
                     average += boid.velocity;
@@ -38,7 +53,7 @@ public class BoidAlignmentBehavior : MonoBehaviour
         if (found > 0)
         {
             average = average / found;
-            boid.velocity += Vector3.Lerp(boid.velocity, average, Time.deltaTime);
+            boid.velocity += Vector3.Lerp(boid.velocity, average, 1f);
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.AI.Navigation;
@@ -7,7 +8,7 @@ using UnityEngine.AI;
 public class PoissonSpawner : MonoBehaviour
 {
     private float yOffset = 0.5f;
-    [SerializeField] private float radius = 50f;
+    public float radius;
     [SerializeField] private int fishesToSpawn = 15;
     [SerializeField] private GameObject prefab;
     private NavMeshSurface navMeshSurface;
@@ -16,18 +17,19 @@ public class PoissonSpawner : MonoBehaviour
     void Start()
     {
         navMeshSurface = FindObjectOfType<NavMeshSurface>();
+        /*radius = navMeshSurface.size.x / 2;
+        radius = 2500f;*/
         for (int i = 0; i < fishesToSpawn; i++)
         {
-            Vector3 spawnPoint = RandomNavSphere(navMeshSurface.center, radius, -1);
-            spawnPoint.y += yOffset;
-            GameObject poisson = Instantiate(prefab);
-            poisson.transform.position = spawnPoint;
+                Vector3 spawnPoint = RandomNavSphere(navMeshSurface.center, radius, -1);
+                spawnPoint.y += yOffset;
+                Instantiate(prefab, spawnPoint, UnityEngine.Random.rotation);
         }
     }
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
-        Vector3 randDirection = Random.insideUnitSphere * dist;
+        Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
 
         randDirection += origin;
 

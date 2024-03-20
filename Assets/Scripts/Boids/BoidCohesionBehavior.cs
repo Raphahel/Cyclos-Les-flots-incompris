@@ -1,4 +1,3 @@
-using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,8 +6,8 @@ using UnityEngine;
 public class BoidCohesionBehavior : MonoBehaviour
 {
     private Boid boid;
-
     public float radius;
+    public float forceModifier;
 
     // Start is called before the first frame update
     void Start()
@@ -19,15 +18,19 @@ public class BoidCohesionBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var boids = FindObjectsOfType<Boid>();
+        /*var boids = FindObjectsOfType<Boid>();
         var average = Vector3.zero;
-        var found = 0;
-        
-        foreach(var boid in boids)
+        var found = 0;*/
+
+        HashSet<Boid> neighboringBoids = boid.linkedQuadTree.FindDataInRange(boid.position2D, radius);
+        Vector2 average = Vector2.zero;
+        int found = 0;
+
+        foreach (var boid in neighboringBoids)
         {
-            if (boid != this.boid)
+            if (boid.position2D != this.boid.position2D)
             {
-                var diff = boid.transform.position - this.transform.position;
+                var diff = boid.position2D - this.boid.position2D;
                 if (diff.magnitude < radius)
                 {
                     average += diff;
@@ -39,7 +42,7 @@ public class BoidCohesionBehavior : MonoBehaviour
         if (found > 0)
         {
             average = average / found;
-            boid.velocity += Vector3.Lerp(Vector3.zero, average, boid.velocity.magnitude / radius);
+            boid.velocity += Vector3.Lerp(Vector3.zero, new Vector3(average.x, 0, average.y), (boid.velocity.magnitude * forceModifier) / radius);
         }
     }
 }

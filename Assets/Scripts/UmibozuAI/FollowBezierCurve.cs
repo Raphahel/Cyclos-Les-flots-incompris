@@ -24,8 +24,9 @@ public class FollowBezierCurve : MonoBehaviour
         //routeToGo = 0;
         tParam = 0f;
         //coroutineAllowed = true;
-        radius = 50f;
+        
         navMeshSurface = FindObjectOfType<NavMeshSurface>();
+        radius = 50f;
         StartCoroutine(GoByTheRoute());
     }
 
