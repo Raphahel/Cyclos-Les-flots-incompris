@@ -11,16 +11,19 @@ public class BoidAlignmentBehavior : MonoBehaviour
 
     public float forceModifier;
 
+    HashSet<Boid> neighboringBoids = new();
+
     // Start is called before the first frame update
     void Start()
     {
         boid = GetComponent<Boid>();
     }
 
+
     // Update is called once per frame
     void Update()
     {
-        HashSet<Boid> neighboringBoids = boid.linkedQuadTree.FindDataInRange(boid.position2D, radius);
+        neighboringBoids = boid.linkedQuadTree.FindDataInRange(boid.position2D, radius);
         Vector3 average = Vector3.zero;
         int found = 0;
 
@@ -42,11 +45,8 @@ public class BoidAlignmentBehavior : MonoBehaviour
             if (boid.position2D != this.boid.position2D)
             {
                 var diff = boid.position2D - this.boid.position2D;
-                if (diff.magnitude < radius)
-                {
-                    average += boid.velocity;
-                    found += 1;
-                }
+                average += boid.velocity;
+                found += 1;
             }
         }
 
@@ -55,5 +55,7 @@ public class BoidAlignmentBehavior : MonoBehaviour
             average = average / found;
             boid.velocity += Vector3.Lerp(boid.velocity, average, 1f);
         }
+
+        neighboringBoids.Clear();
     }
 }

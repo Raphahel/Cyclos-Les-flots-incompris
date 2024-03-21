@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class Quadtree : MonoBehaviour
 {
-    class Node 
+    public class Node 
     {
         Rect _bounds;
         Node[] _children;
         int _depth = -1;
 
-        HashSet<Boid> _data;
+        public HashSet<Boid> _data;
 
         public Node(Rect inBounds, int inDepth = 0)
         {
@@ -22,22 +22,21 @@ public class Quadtree : MonoBehaviour
         {
             return _bounds;
         }
-
         
         public void AddData(Quadtree Owner, Boid datum)
         {
             if (_children == null)
             {
-                if (_data == null)
-                    _data = new();
-
+                if (_data == null) { _data = new(); }
                 if ((_data.Count + 1 >= Owner.PreferredMaxDataPerNode) && CanSplit(Owner))
                 {
                     SplitNode(Owner);
                 }
                 else
+                {
                     _data.Add(datum);
-
+                    datum.SetParent(this);
+                }
                 return;
             }
 
@@ -84,7 +83,7 @@ public class Quadtree : MonoBehaviour
             }
         }
 
-        bool Contains(Vector2 other)
+        public bool Contains(Vector2 other)
         {
             return _bounds.Contains(other);
         }
@@ -113,23 +112,23 @@ public class Quadtree : MonoBehaviour
             }
         }
 
-        public void FindDataInRange(Vector2 SearchLocation, float SearchRange, HashSet<Boid> OutFoundData)
+        public void FindDataInRadius(Vector2 SearchLocation, float radius, HashSet<Boid> OutFoundData)
         {
             if (_depth != 0)
             {
                 throw new System.InvalidOperationException("FindDataInRange cannot be run on anything other than the root node.");
             }
 
-            Rect SearchRect = new Rect(SearchLocation.x - SearchRange, SearchLocation.y - SearchRange,
-                                       SearchRange * 2f, SearchRange * 2f);
+            Rect SearchRect = new Rect(SearchLocation.x - radius, SearchLocation.y - radius,
+                                       radius * 2f, radius * 2f);
 
             FindDataInBox(SearchRect, OutFoundData);
 
-            /*OutFoundData.RemoveWhere(Datum => {
-                float TestRange = SearchRange + Datum.GetRadius();
+            OutFoundData.RemoveWhere(Datum => {
+                float TestRange = radius * 2;
 
-                return (SearchLocation - Datum.GetLocation()).sqrMagnitude > (TestRange * TestRange);
-            });*/
+                return (SearchLocation - Datum.position2D).sqrMagnitude > (TestRange * TestRange);
+            });
         }
 
         public void RemoveAllData()
@@ -205,10 +204,6 @@ public class Quadtree : MonoBehaviour
                 }
                 JoinNodes(Owner);
             }
-            else
-            {
-                MoveBoids(Owner);
-            }
         }
 
         public void JoinNodes(Quadtree Owner)
@@ -241,7 +236,7 @@ public class Quadtree : MonoBehaviour
         }
 
 
-        public void MoveBoids(Quadtree Owner)
+        /*public void MoveBoids(Quadtree Owner)
         {
             if (_data != null)
             {
@@ -261,15 +256,15 @@ public class Quadtree : MonoBehaviour
                     _data.Remove(boid);
                 }
             }
-        }
+        }*/
 
     }
 
-    [field: SerializeField] public int PreferredMaxDataPerNode { get; private set; } = 50;
+    [field: SerializeField] public int PreferredMaxDataPerNode { get; private set; } = 15;
     [field: SerializeField] public int MinimumNodeSize { get; private set; } = 2;
-    Node root;
+    public Node root;
 
-    public static Quadtree Instance { get; private set; }
+    /*public static Quadtree Instance { get; private set; }
 
     private void Awake()
     {
@@ -280,9 +275,9 @@ public class Quadtree : MonoBehaviour
         {
             Instance = this;
         }
-    }
+    }*/
 
-    private void FixedUpdate()
+    private void Update()
     {
         root.Update(this);
     }
@@ -309,7 +304,7 @@ public class Quadtree : MonoBehaviour
     {
 
         HashSet<Boid> FoundData = new();
-        root.FindDataInRange(SearchLocation, SearchRange, FoundData);
+        root.FindDataInRadius(SearchLocation, SearchRange, FoundData);
         return FoundData;
     }
 
@@ -327,5 +322,4 @@ public class Quadtree : MonoBehaviour
 
     public int GetChildrenCount() { return root.GetChildrenCount(); }
 
-    //public void UpdateBoids() { root.UpdateBoids(this); }
 }

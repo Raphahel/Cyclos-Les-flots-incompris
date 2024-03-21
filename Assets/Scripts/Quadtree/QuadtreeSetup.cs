@@ -12,7 +12,7 @@ public class QuadtreeSetup : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        _bounds = new Rect(-5000, -5000, 10000, 10000);
+        _bounds = new Rect(-3000, -3000, 6000, 6000);
         _quadtree = GetComponent<Quadtree>();
         _quadtree.PrepareTree(_bounds);
         Boid[] boids = FindObjectsOfType<Boid>();

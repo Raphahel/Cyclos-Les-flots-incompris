@@ -4,11 +4,13 @@ using UnityEngine;
 
 public class Boid : MonoBehaviour
 {
+    
     public Vector3 velocity;
     public Vector2 position2D;
     public float maxVelocity;
 
     public Quadtree linkedQuadTree;
+    private Quadtree.Node parent;
 
     private void Awake()
     {
@@ -27,12 +29,35 @@ public class Boid : MonoBehaviour
         }
         transform.position += velocity * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(velocity);
+
+        if (HasMoved())
+        {
+            OnMove();
+        }
     }
 
-    /*private void OnDrawGizmos()
+    private void FixedUpdate()
     {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(transform.position, 25f);
-    }*/
+        
+    }
 
+    public void OnMove()
+    {
+            parent._data.Remove(this);
+            linkedQuadTree.AddData(this);
+    }
+    
+    public void SetParent(Quadtree.Node parent)
+    {
+        this.parent = parent;
+    }
+
+    public bool HasMoved()
+    {
+        if (parent == null)
+        {
+            return false;
+        }
+        return !parent.Contains(position2D);
+    }
 }
