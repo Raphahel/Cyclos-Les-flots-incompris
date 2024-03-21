@@ -10,7 +10,7 @@ public class Boid : MonoBehaviour
     public float maxVelocity;
 
     public Quadtree linkedQuadTree;
-    private Quadtree.Node parent;
+    //private Quadtree.Node parent;
 
     private void Awake()
     {
@@ -30,18 +30,13 @@ public class Boid : MonoBehaviour
         transform.position += velocity * Time.deltaTime;
         transform.rotation = Quaternion.LookRotation(velocity);
 
-        if (HasMoved())
+        /*if (HasMoved())
         {
             OnMove();
-        }
+        }*/
     }
 
-    private void FixedUpdate()
-    {
-        
-    }
-
-    public void OnMove()
+    /*public void OnMove()
     {
             parent._data.Remove(this);
             linkedQuadTree.AddData(this);
@@ -59,5 +54,5 @@ public class Boid : MonoBehaviour
             return false;
         }
         return !parent.Contains(position2D);
-    }
+    }*/
 }

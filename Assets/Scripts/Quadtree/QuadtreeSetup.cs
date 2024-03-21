@@ -21,5 +21,15 @@ public class QuadtreeSetup : MonoBehaviour
             _quadtree.AddData(b);
         }
     }
+
+    private void Update()
+    {
+        _quadtree.RemoveAllData();
+        Boid[] boids = FindObjectsOfType<Boid>();
+        foreach (Boid b in boids)
+        {
+            _quadtree.AddData(b);
+        }
+    }
     //Pas besoin d'update le quadtree à chaque frame? 
 }

@@ -35,7 +35,7 @@ public class Quadtree : MonoBehaviour
                 else
                 {
                     _data.Add(datum);
-                    datum.SetParent(this);
+                    //datum.SetParent(this);
                 }
                 return;
             }
@@ -133,8 +133,8 @@ public class Quadtree : MonoBehaviour
 
         public void RemoveAllData()
         {
-            //_children = null;
-            if (_children != null)
+            _children = null;
+            /*if (_children != null)
             {
                 foreach (Node n in _children)
                 {
@@ -144,7 +144,7 @@ public class Quadtree : MonoBehaviour
                     } 
                 }
                 _children = null;
-            }
+            }*/
         }
 
         public List<Node> GetAllChildren()
@@ -277,10 +277,10 @@ public class Quadtree : MonoBehaviour
         }
     }*/
 
-    private void Update()
+    /*private void Update()
     {
         root.Update(this);
-    }
+    }*/
 
     public void PrepareTree(Rect bounds)
     {
