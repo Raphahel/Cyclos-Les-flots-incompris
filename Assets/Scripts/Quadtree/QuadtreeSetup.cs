@@ -7,7 +7,7 @@ public class QuadtreeSetup : MonoBehaviour
 
     [SerializeField] private Rect _bounds; 
     public Quadtree _quadtree;
-
+    Boid[] boids;
 
     // Start is called before the first frame update
     void Start()
@@ -15,7 +15,7 @@ public class QuadtreeSetup : MonoBehaviour
         _bounds = new Rect(-3000, -3000, 6000, 6000);
         _quadtree = GetComponent<Quadtree>();
         _quadtree.PrepareTree(_bounds);
-        Boid[] boids = FindObjectsOfType<Boid>();
+        boids = FindObjectsOfType<Boid>();
         foreach (Boid b in boids)
         {
             _quadtree.AddData(b);
@@ -25,7 +25,6 @@ public class QuadtreeSetup : MonoBehaviour
     private void Update()
     {
         _quadtree.RemoveAllData();
-        Boid[] boids = FindObjectsOfType<Boid>();
         foreach (Boid b in boids)
         {
             _quadtree.AddData(b);
