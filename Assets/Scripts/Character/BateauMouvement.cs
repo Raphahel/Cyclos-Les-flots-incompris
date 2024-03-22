@@ -8,7 +8,7 @@ public class BateauMouvement : MonoBehaviour
 {
     [Header("Variables de mouvement")]
     [SerializeField]
-    int rotationSpeed = 5;
+    float maxRotationSpeed; 
     [SerializeField]
     int acceleration = 10;
     [SerializeField]
@@ -20,17 +20,21 @@ public class BateauMouvement : MonoBehaviour
 
     //Variables uniquement utilisé pour calculs
     private float forceVitesse = 0;
-    private float forceRotation = 0;
+    private float directionRotation = 0;
+    private float forceRotation;
+    float rotationSpeed = 5;
     private float sqrVitesseMax;
+    private float SaveRotation;
     
     //Composants instanciés ou récupéré à runtime
     private Controles inputMap;
     private Rigidbody rb;
 
 
-    void Start()
+    void Awake()
     {
         sqrVitesseMax = vitesseMax * vitesseMax;
+        SaveRotation = rotationSpeed;
         rb = gameObject.GetComponent<Rigidbody>();
         inputMap = new Controles();
         inputMap.Enable();
@@ -42,8 +46,9 @@ public class BateauMouvement : MonoBehaviour
         //Pour Debug uniquement à retirer pour les build
         //Permet de changer la vitesse max à runtime dans l'éditeur
         sqrVitesseMax = vitesseMax * vitesseMax;
+        SaveRotation = maxRotationSpeed;
 
-
+        Debug.Log(directionRotation);
         Mouvement();
     }
 
@@ -51,10 +56,10 @@ public class BateauMouvement : MonoBehaviour
     private void Mouvement() 
     {
         //Cimetière des essais de rotation (This is fine)
-        //transform.RotateAround(tranformMoteur.position, Vector3.up, forceRotation * Time.deltaTime);
+        //transform.RotateAround(tranformMoteur.position, Vector3.up, directionRotation * Time.deltaTime);
         //Debug.DrawLine(transform.right, transform.right * 3, new Color(0, 0, 1.0f));
-        //rb.AddRelativeTorque(Vector3.up * forceRotation);
-        //Vector3 force = transform.right * forceRotation;
+        //rb.AddRelativeTorque(Vector3.up * directionRotation);
+        //Vector3 force = transform.right * directionRotation;
         //rb.AddForceAtPosition(force, tranformMoteur.position, ForceMode.Acceleration);
 
 
@@ -76,17 +81,37 @@ public class BateauMouvement : MonoBehaviour
         }
 
         //Rotation
-        /*if (forceRotation != 0)
+        /*if (directionRotation != 0)
         {
-            forceRotation -= rb.velocity.sqrMagnitude/10;
+            directionRotation -= rb.velocity.sqrMagnitude/10;
             Debug.Log(rb.velocity.sqrMagnitude);
         }
 */
-        if(rb.velocity.sqrMagnitude > 1)
+
+        if(rb.velocity.sqrMagnitude < 1)
         {
-            transform.Rotate(0, forceRotation * Time.deltaTime, 0);
+            rotationSpeed = Mathf.Lerp(rotationSpeed, 0, 0.1f);
+        }
+        else
+        {
+            rotationSpeed = Mathf.Lerp(rotationSpeed, SaveRotation, 0.5f);
         }
 
+        Debug.Log("directionRotation : " + directionRotation);
+        if (directionRotation != 0)
+        {
+            forceRotation = directionRotation * rotationSpeed;
+
+            float velocityFront = Vector3.Dot(rb.velocity, transform.forward);
+            rb.AddForce((-velocityFront / 2) * transform.right);
+        }
+        else if(directionRotation == 0)
+        {
+            forceRotation = Mathf.Lerp(forceRotation,0, 0.95f);
+        }
+        Debug.Log("forceRotation : " + forceRotation);
+
+        transform.Rotate(0, forceRotation * Time.deltaTime, 0);
 
 
         //Réduction de l'inertie latérale
@@ -110,12 +135,13 @@ public class BateauMouvement : MonoBehaviour
     private void StartTourner(InputAction.CallbackContext context)
     {
         Vector2 vect = context.ReadValue<Vector2>();
-        forceRotation = vect.x * rotationSpeed; 
+        directionRotation = vect.x; 
     }
 
     private void StopTourner(InputAction.CallbackContext context)
     {
-        forceRotation = 0;
+        Debug.Log("FEZAEBFEAESDGFNDAEfxn htzecqf wbdgyfttcqfxzr");
+        directionRotation = 0;
     }
 
     private void Subscribe()
