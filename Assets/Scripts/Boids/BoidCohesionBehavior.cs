@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using Unity.Jobs;
 using UnityEngine;
 
 [RequireComponent(typeof(Boid))]
@@ -15,8 +16,6 @@ public class BoidCohesionBehavior : MonoBehaviour
     {
         boid = GetComponent<Boid>();
     }
-
-
 
     // Update is called once per frame
     void Update()

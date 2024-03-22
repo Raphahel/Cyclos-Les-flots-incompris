@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.Jobs;
 using UnityEngine;
 
 public class Quadtree : MonoBehaviour
@@ -133,18 +134,16 @@ public class Quadtree : MonoBehaviour
 
         public void RemoveAllData()
         {
-            _children = null;
-            /*if (_children != null)
+            //_children = null;
+            if (_children != null)
             {
                 foreach (Node n in _children)
                 {
-                    if (n._children != null)
-                    {
-                        n.RemoveAllData();
-                    } 
+                    n.RemoveAllData();
                 }
-                _children = null;
-            }*/
+            }
+            _children = null;
+            _data = null;
         }
 
         public List<Node> GetAllChildren()
@@ -264,7 +263,7 @@ public class Quadtree : MonoBehaviour
     [field: SerializeField] public int MinimumNodeSize { get; private set; } = 2;
     public Node root;
 
-    /*public static Quadtree Instance { get; private set; }
+    public static Quadtree Instance { get; private set; }
 
     private void Awake()
     {
@@ -275,7 +274,7 @@ public class Quadtree : MonoBehaviour
         {
             Instance = this;
         }
-    }*/
+    }
 
     /*private void Update()
     {
