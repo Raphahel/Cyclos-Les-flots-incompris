@@ -23,7 +23,7 @@ public class BoidAlignmentBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        neighboringBoids = boid.linkedQuadTree.FindDataInRange(boid.position2D, radius);
+        neighboringBoids = Quadtree.Instance.FindDataInRange(boid.position2D, radius);
         Vector3 average = Vector3.zero;
         int found = 0;
 

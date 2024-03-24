@@ -6,7 +6,7 @@ public class QuadtreeSetup : MonoBehaviour
 {
 
     [SerializeField] private Rect _bounds; 
-    public Quadtree _quadtree;
+    private Quadtree _quadtree;
     Boid[] boids;
 
     // Start is called before the first frame update

@@ -24,7 +24,7 @@ public class BoidInverseMagnetismBehavior : MonoBehaviour
     void Update()
     {
         //var boids = FindObjectsOfType<Boid>();
-        neighboringBoids = boid.linkedQuadTree.FindDataInRange(boid.position2D, radius);
+        neighboringBoids = Quadtree.Instance.FindDataInRange(boid.position2D, radius);
         Vector2 average = Vector2.zero;
         int found = 0;
 

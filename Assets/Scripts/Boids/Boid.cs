@@ -9,12 +9,12 @@ public class Boid : MonoBehaviour
     public Vector2 position2D;
     public float maxVelocity;
 
-    public Quadtree linkedQuadTree;
+    //public Quadtree linkedQuadTree;
     //private Quadtree.Node parent;
 
     private void Awake()
     {
-        linkedQuadTree = FindObjectOfType<Quadtree>();
+        //linkedQuadTree = FindObjectOfType<Quadtree>();
     }
 
     // Update is called once per frame
@@ -34,6 +34,12 @@ public class Boid : MonoBehaviour
         {
             OnMove();
         }*/
+    }
+
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(transform.position, 25f);
     }
 
     /*public void OnMove()

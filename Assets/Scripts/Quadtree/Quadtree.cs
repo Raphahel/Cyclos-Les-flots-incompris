@@ -96,20 +96,30 @@ public class Quadtree : MonoBehaviour
 
         public void FindDataInBox(Rect SearchRect, HashSet<Boid> OutFoundData)
         {
+            if (!Overlaps(SearchRect))
+            {
+                return;
+            }
+
             if (_children == null)
             {
                 if (_data == null || _data.Count == 0)
                     return;
 
-                OutFoundData.UnionWith(_data);
+                foreach(var b in _data)
+                {
+                    if (SearchRect.Contains(b.position2D)) {
+                        OutFoundData.Add(b);
+                    }
+                }
+                //OutFoundData.UnionWith(_data);
 
                 return;
             }
 
             foreach (var Child in _children)
             {
-                if (Child.Overlaps(SearchRect))
-                    Child.FindDataInBox(SearchRect, OutFoundData);
+                Child.FindDataInBox(SearchRect, OutFoundData);
             }
         }
 
