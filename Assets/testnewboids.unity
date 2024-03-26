@@ -683,15 +683,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
   material: {fileID: 2100000, guid: 6a2bd5da404f73c4c94f2087f12d5957, type: 2}
-  maxPopulation: 15
+  maxPopulation: 5000
+  radius: 2500
   maxSpeed: 5
-  cohesionRadius: 5
-  alignmentRadius: 5
-  inverseMagnetismRadius: 3
-  repulsionForce: 100
+  positionY: 0
+  tickDelay: 0.0001
+  cohesionRadius: 15
+  alignmentRadius: 7
+  inverseMagnetismRadius: 1
+  repulsionForce: 1
   obstacleAvoidanceRadius: 3
   obstacleRepulsionForce: 10
-  tickDelay: 0.0001
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

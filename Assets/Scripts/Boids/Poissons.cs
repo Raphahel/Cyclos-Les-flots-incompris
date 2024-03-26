@@ -8,36 +8,51 @@ using UnityEngine;
 
 public class Poissons : MonoBehaviour
 {
+    [Header("Mesh")]
     [SerializeField]
     Mesh mesh;
 
     [SerializeField]
     Material material;
 
+    [Header("Settings")]
     [SerializeField]
     int maxPopulation;
+
+    [SerializeField]
+    float radius;
 
     [SerializeField]
     float maxSpeed;
 
     [SerializeField]
+    float positionY;
+
+    [SerializeField, Min(0.0001f)]
+    float tickDelay;
+
+
+    [Header("Cohésion")]
+    [SerializeField]
     float cohesionRadius;
 
+    [Header("Alignement")]
     [SerializeField]
     float alignmentRadius;
 
+    [Header("Magnétisme")]
     [SerializeField]
     float inverseMagnetismRadius;
     [SerializeField]
     float repulsionForce;
 
+    [Header("Obstacles")]
     [SerializeField]
     float obstacleAvoidanceRadius;
     [SerializeField]
     float obstacleRepulsionForce;
 
-    [SerializeField, Min(0.0001f)]
-    float tickDelay;
+
 
 
     List<Matrix4x4> fishTRS; //The TRS stands from translation, rotation, scale
@@ -50,8 +65,8 @@ public class Poissons : MonoBehaviour
     JobHandle cohesionHandle;
     JobHandle alignmentHandle;
     JobHandle magnetismHandle;
-    JobHandle obstacleHandle;
-
+    //JobHandle obstacleHandle;
+    
     private void Awake()
     {
         float position = 0;
@@ -60,7 +75,8 @@ public class Poissons : MonoBehaviour
 
         for (int i = 0; i < maxPopulation; i++)
         {
-            AddFish(new Vector3(position, 0, position), Quaternion.identity, 1f);
+            Vector3 spawnPoint = RandomSpawnPoint(radius, positionY);
+            AddFish(spawnPoint, Quaternion.identity, 1f) ;
             fishVelocity.Add(new Vector3(1, 0, 0));
             position += 2f;
         }
@@ -100,6 +116,14 @@ public class Poissons : MonoBehaviour
 
     }
 
+    public Vector3 RandomSpawnPoint(float radius, float yoffset, Vector3 origin = new Vector3())
+    {
+        Vector3 randPos = Random.insideUnitSphere * radius;
+        randPos += origin;
+        randPos.y = yoffset;
+        return randPos;
+    }
+
     /*void Tick()
     {
         for (int i = 0; i < fishTRS.Count; i++ )
@@ -133,7 +157,7 @@ public class Poissons : MonoBehaviour
         float lastTime = Time.time;
         while(true)
         {
-            #region Update Fish Container
+            #region Update Fish Container & Velocity
             {
                 fish_cont.SetCapacity(fishTRS.Count);
                 fish_velocity.SetCapacity(fishTRS.Count);
@@ -147,7 +171,6 @@ public class Poissons : MonoBehaviour
             }
             #endregion
 
-            #region Boid Jobs
             //Obstacle avoidance (not a job because Physics.Overlaps)
             for (int i = 0; i < fish_cont.Length; i++)
             {
@@ -159,6 +182,8 @@ public class Poissons : MonoBehaviour
                 fish_velocity[i] = velocity;
             }
 
+            #region Jobs (delete?)
+            /*
             #region Cohesion Job
             CohesionJob cohesionJob = new CohesionJob()
             {
@@ -208,8 +233,10 @@ public class Poissons : MonoBehaviour
             };
             obstacleHandle = obstacleJob.Schedule(fishTRS.Count, 8);
             yield return new WaitUntil(() => obstacleHandle.IsCompleted);
-            obstacleHandle.Complete();*/
+            obstacleHandle.Complete();
             #endregion
+            #endregion
+            */
             #endregion
 
             #region Update Job
@@ -218,12 +245,16 @@ public class Poissons : MonoBehaviour
                 deltaTime = Time.time - lastTime,
                 fish_cont = fish_cont,
                 fish_velocity = fish_velocity,
-                maxSpeed = maxSpeed
+                maxSpeed = maxSpeed,
+                cohesionRadius = cohesionRadius,
+                inverseMagnetismRadius = inverseMagnetismRadius,
+                repulsionForce = repulsionForce,
+                alignmentRadius = alignmentRadius
             };
 
             lastTime = Time.time;
 
-            handle = job.Schedule(fishTRS.Count, 8);
+            handle = job.Schedule(fishTRS.Count, 64);
             yield return new WaitUntil(() => handle.IsCompleted);
             handle.Complete();
             #endregion
@@ -235,6 +266,7 @@ public class Poissons : MonoBehaviour
                 fishVelocity[i] = fish_velocity[i];
             });
             #endregion
+            Debug.Log("Fin coroutine");
             yield return new WaitForSeconds(tickDelay);
         }
     }
@@ -246,34 +278,106 @@ public class Poissons : MonoBehaviour
         [NativeDisableParallelForRestriction] public NativeList<Vector3> fish_velocity;
         public float deltaTime;
         public float maxSpeed;
+        public float cohesionRadius;
+        public float inverseMagnetismRadius;
+        public float repulsionForce;
+        public float alignmentRadius;
+
         public void Execute(int i)
         {
             Matrix4x4 trs = fish_cont[i];
             Vector3 position = trs.GetPosition();
             Vector3 scale = trs.lossyScale;
-            Vector3 velocity = fish_velocity[i];
+            Vector3 oldVelocity = fish_velocity[i];
+            Vector3 newVelocity = oldVelocity;
+
+            Vector3 average = Vector3.zero;
+            int found = 0;
 
             /*velocity += Cohesion(position)
                 + Alignment(position, velocity)
                 + InverseMagnetism(position)
                 + ObstacleAvoidance(position);*/
-
-            if (velocity.magnitude > maxSpeed)
+            #region Cohesion
+            for (int j = 0; j < fish_cont.Length; j++)
             {
-                velocity = velocity.normalized * maxSpeed;
+                Matrix4x4 newFish = fish_cont[j];
+                Vector3 newPosition = newFish.GetPosition();
+                Vector3 diff = newPosition - position;
+                if (diff.magnitude < cohesionRadius && i != j)
+                {
+                    average += diff;
+                    found += 1;
+                }
+            }
+            if (found > 0)
+            {
+                average = average / found;
+                newVelocity += Vector3.Lerp(Vector3.zero, average, average.magnitude / cohesionRadius);
+            }
+            #endregion
+
+            #region Alignment
+            average = Vector3.zero;
+            found = 0;
+
+            for (int j = 0; j < fish_cont.Length; j++)
+            {
+                Matrix4x4 otherFish = fish_cont[j];
+                Vector3 otherPosition = otherFish.GetPosition();
+                Vector3 diff = otherPosition - position;
+                Vector3 otherVelocity = fish_velocity[j];
+                if (diff.magnitude < alignmentRadius && i != j)
+                {
+                    average += otherVelocity;
+                    found += 1;
+                }
+            }
+            if (found > 0)
+            {
+                average = average / found;
+                newVelocity += Vector3.Lerp(oldVelocity, average, average.magnitude / alignmentRadius);
             }
 
 
-            position += velocity * deltaTime;
+            #endregion
 
-            Quaternion rotation = Quaternion.LookRotation(velocity);
+            #region InverseMagnetism
+            average = Vector3.zero;
+            found = 0;
+
+            for (int j = 0; j < fish_cont.Length; j++)
+            {
+                Matrix4x4 newFish = fish_cont[j];
+                Vector3 newPosition = newFish.GetPosition();
+                Vector3 diff = newPosition - position;
+                if (diff.magnitude < inverseMagnetismRadius && i != j)
+                {
+                    average += diff;
+                    found += 1;
+                }
+            }
+            if (found > 0)
+            {
+                average = average / found;
+                newVelocity -= Vector3.Lerp(Vector3.zero, average, oldVelocity.magnitude / inverseMagnetismRadius) * repulsionForce;
+            }
+            #endregion
+
+            if (newVelocity.magnitude > maxSpeed)
+            {
+                newVelocity = newVelocity.normalized * maxSpeed;
+            }
+
+            position += newVelocity * deltaTime;
+
+            Quaternion rotation = Quaternion.LookRotation(newVelocity);
 
             fish_cont[i] = Matrix4x4.TRS(position, rotation, scale);
-            fish_velocity[i] = velocity;
+            fish_velocity[i] = newVelocity;
         }
     }
 
-    [BurstCompile]
     struct CohesionJob : IJobParallelFor
     {
         [NativeDisableParallelForRestriction] public NativeList<Matrix4x4> fish_cont;
@@ -341,7 +445,6 @@ public class Poissons : MonoBehaviour
         return result;
     }
 
-    [BurstCompile]
     struct AlignmentJob : IJobParallelFor
     {
         [NativeDisableParallelForRestriction] public NativeList<Matrix4x4> fish_cont;
@@ -410,7 +513,6 @@ public class Poissons : MonoBehaviour
         return Vector3.Lerp(velocity, average, average.magnitude / alignmentRadius);
     }
 
-    [BurstCompile]
     struct InverseMagnetismJob : IJobParallelFor
     {
         [NativeDisableParallelForRestriction] public NativeList<Matrix4x4> fish_cont;
@@ -492,7 +594,6 @@ public class Poissons : MonoBehaviour
         return Vector3.Lerp(Vector3.zero, new Vector3(average.x, 0, average.z), average.magnitude / obstacleAvoidanceRadius) * obstacleRepulsionForce;
     }
 
-    [BurstCompile]
     struct ObstacleAvoidanceJob : IJobParallelFor
     {
         [NativeDisableParallelForRestriction] public NativeList<Matrix4x4> fish_cont;
