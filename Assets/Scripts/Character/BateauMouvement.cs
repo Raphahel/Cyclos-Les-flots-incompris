@@ -25,6 +25,10 @@ public class BateauMouvement : MonoBehaviour
     float rotationSpeed = 5;
     private float sqrVitesseMax;
     private float SaveRotation;
+
+    //Variable d'interaction avec les flotteur de rotation
+    private int nbFlotteursRota = 0;
+    private int nbFlotteurImmergé = 0;
     
     //Composants instanciés ou récupéré à runtime
     private Controles inputMap;
@@ -47,26 +51,20 @@ public class BateauMouvement : MonoBehaviour
         //Permet de changer la vitesse max à runtime dans l'éditeur
         sqrVitesseMax = vitesseMax * vitesseMax;
         SaveRotation = maxRotationSpeed;
-
-        Debug.Log(directionRotation);
         Mouvement();
     }
 
 
     private void Mouvement() 
     {
-        //Cimetière des essais de rotation (This is fine)
-        //transform.RotateAround(tranformMoteur.position, Vector3.up, directionRotation * Time.deltaTime);
-        //Debug.DrawLine(transform.right, transform.right * 3, new Color(0, 0, 1.0f));
-        //rb.AddRelativeTorque(Vector3.up * directionRotation);
-        //Vector3 force = transform.right * directionRotation;
-        //rb.AddForceAtPosition(force, tranformMoteur.position, ForceMode.Acceleration);
+        Debug.Log("nbFlotteurRota = " + nbFlotteursRota + " nb Flotteur immergé = " + nbFlotteurImmergé);
+        float facteurImmertion = nbFlotteurImmergé / nbFlotteursRota;
 
 
         //ajout de la vitesse
-        rb.AddForce(transform.forward * forceVitesse, ForceMode.Acceleration);
+        rb.AddForce(transform.forward * forceVitesse * facteurImmertion, ForceMode.Acceleration);
         
-        //V2rification que la vitesse max n'est pas déplacée
+        //Vérification que la vitesse max n'est pas dépassée
         //Test sur la moitié de la vitesse max pour le déplacement à reculon
         if (rb.velocity.sqrMagnitude > sqrVitesseMax / 2)
         {
@@ -80,15 +78,9 @@ public class BateauMouvement : MonoBehaviour
             rb.AddForce(contreForce, ForceMode.Acceleration);
         }
 
-        //Rotation
-        /*if (directionRotation != 0)
-        {
-            directionRotation -= rb.velocity.sqrMagnitude/10;
-            Debug.Log(rb.velocity.sqrMagnitude);
-        }
-*/
-
-        if(rb.velocity.sqrMagnitude < 1)
+        
+        //Modification de la vitesse de rotation si le navire est à l'arrêt ou en mouvement
+        if(Vector3.Dot(transform.forward, rb.velocity) < 2)
         {
             rotationSpeed = Mathf.Lerp(rotationSpeed, 0, 0.1f);
         }
@@ -97,30 +89,17 @@ public class BateauMouvement : MonoBehaviour
             rotationSpeed = Mathf.Lerp(rotationSpeed, SaveRotation, 0.5f);
         }
 
-        Debug.Log("directionRotation : " + directionRotation);
-        if (directionRotation != 0)
-        {
-            forceRotation = directionRotation * rotationSpeed;
-
-            float velocityFront = Vector3.Dot(rb.velocity, transform.forward);
-            rb.AddForce((-velocityFront / 2) * transform.right);
-        }
-        else if(directionRotation == 0)
-        {
-            forceRotation = Mathf.Lerp(forceRotation,0, 0.95f);
-        }
-        Debug.Log("forceRotation : " + forceRotation);
-
-        transform.Rotate(0, forceRotation * Time.deltaTime, 0);
-
-
-        //Réduction de l'inertie latérale
-        float velocityInDirection = Vector3.Dot(rb.velocity, transform.right);
-        rb.AddForce((-velocityInDirection / 2) * transform.right);
-
-
+        //Application de la rotation
+        rb.AddForceAtPosition(directionRotation * rotationSpeed * -transform.right * facteurImmertion, tranformMoteur.position, ForceMode.Acceleration);
     }
 
+    //Fonction de modifiaction des flotteurs de Rotation
+    public void AddFlotteur() { nbFlotteursRota++; }
+    public void FlottImmerge() { nbFlotteurImmergé++; }
+    public void FlottEmerge() { nbFlotteurImmergé--; }  
+    
+    
+    //Section de gestion des inputs :
     private void StartMove(InputAction.CallbackContext context)
     {
         Vector2 vect = context.ReadValue<Vector2>();
@@ -140,7 +119,6 @@ public class BateauMouvement : MonoBehaviour
 
     private void StopTourner(InputAction.CallbackContext context)
     {
-        Debug.Log("FEZAEBFEAESDGFNDAEfxn htzecqf wbdgyfttcqfxzr");
         directionRotation = 0;
     }
 

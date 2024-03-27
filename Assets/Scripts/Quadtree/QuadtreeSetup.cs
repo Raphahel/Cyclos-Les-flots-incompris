@@ -1,0 +1,34 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class QuadtreeSetup : MonoBehaviour
+{
+
+    [SerializeField] private Rect _bounds; 
+    private Quadtree _quadtree;
+    Boid[] boids;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+        _bounds = new Rect(-3000, -3000, 6000, 6000);
+        _quadtree = GetComponent<Quadtree>();
+        _quadtree.PrepareTree(_bounds);
+        boids = FindObjectsOfType<Boid>();
+        foreach (Boid b in boids)
+        {
+            _quadtree.AddData(b);
+        }
+    }
+
+    private void Update()
+    {
+        _quadtree.RemoveAllData();
+        foreach (Boid b in boids)
+        {
+            _quadtree.AddData(b);
+        }
+    }
+    //Pas besoin d'update le quadtree à chaque frame? 
+}

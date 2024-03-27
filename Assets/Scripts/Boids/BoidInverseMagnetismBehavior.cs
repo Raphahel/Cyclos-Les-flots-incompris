@@ -12,6 +12,8 @@ public class BoidInverseMagnetismBehavior : MonoBehaviour
 
     public float repulsionForce;
 
+    HashSet<Boid> neighboringBoids = new();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,27 +23,27 @@ public class BoidInverseMagnetismBehavior : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var boids = FindObjectsOfType<Boid>();
-        var average = Vector3.zero;
-        var found = 0;
+        //var boids = FindObjectsOfType<Boid>();
+        neighboringBoids = Quadtree.Instance.FindDataInRange(boid.position2D, radius);
+        Vector2 average = Vector2.zero;
+        int found = 0;
 
-        foreach (var boid in boids)
+        foreach (var boid in neighboringBoids)
         {
-            if (boid != this.boid)
+            if (boid.position2D != this.boid.position2D)
             {
-                var diff = boid.transform.position - this.transform.position;
-                if (diff.magnitude < radius)
-                {
+                var diff = boid.position2D - this.boid.position2D;
                     average += diff;
                     found += 1;
-                }
             }
         }
 
         if (found > 0)
         {
             average = average / found;
-            boid.velocity -= Vector3.Lerp(Vector3.zero, average, boid.velocity.magnitude / radius) * repulsionForce;
+            boid.velocity -= Vector3.Lerp(Vector3.zero, new Vector3(average.x, 0, average.y), boid.velocity.magnitude / radius) * repulsionForce;
         }
+
+        neighboringBoids.Clear();
     }
 }

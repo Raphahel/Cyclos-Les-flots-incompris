@@ -29,7 +29,7 @@ public class BoidObstacleAvoidanceBehavior : MonoBehaviour
 
         foreach (var c in colliders)
         {
-            var diff = c.transform.position - this.transform.position;
+            var diff = c.ClosestPoint(transform.position) - transform.position;
             average += diff;
             found += 1;
         }

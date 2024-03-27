@@ -4,35 +4,42 @@ using UnityEngine;
 
 public class Flottaison : MonoBehaviour
 {
+    //Rigidbody de l'object affecté par la flottaison
     [SerializeField]
-    private Rigidbody rb;
-    
+    protected Rigidbody rb;
+
     [Header("Variables Flottaison")]
     [SerializeField]
-    private float profondeurAvantSubmerger = 1.0f;
+    protected float profondeurAvantSubmerger = 1.0f;
+    
+    //Force de déplacement d'un flotteur complétement immergé
     [SerializeField]
-    private float forceDeplacement = 3f;
+    protected float forceDeplacement = 3f;
+    
+    //Nombre total de flotteur attaché à l'objet
     [SerializeField]
-    private int nombreFlotteur = 1;
+    protected int nombreFlotteur = 1;
+    
     [SerializeField]
-    private float frottementEau = 0.5f;
+    protected float frottementEau = 0.5f;
     [SerializeField]
-    private float frottementAngulaireEau = 0.3f;
+    protected float frottementAngulaireEau = 0.3f;
+
+    protected float waveheigth;
 
     private void OnDrawGizmos()
     {
         Gizmos.DrawWireSphere(transform.position, 0.5f);
     }
 
-    void FixedUpdate()
+    protected void FixedUpdate()
     {
         rb.AddForceAtPosition(Physics.gravity / nombreFlotteur, transform.position, ForceMode.Acceleration);
 
-        Vector3 wave = GestionnaireVagues.instance.HauteurVague(transform.position);
-        float waveHeight = wave.y;
+        //Appelle le singleton responsable du calcul de vague CPU
+        float waveHeight = GestionnaireVagues.instance.HauteurVague(transform.position).y;;
 
-
-        if(transform.position.y < waveHeight)
+        if (transform.position.y < waveHeight)
         {
             float multiplicateurMouvement = Mathf.Clamp01(waveHeight - transform.position.y / profondeurAvantSubmerger) * forceDeplacement;
             rb.AddForceAtPosition(new Vector3(0f, Mathf.Abs(-Physics.gravity.y) * multiplicateurMouvement, 0f), transform.position, ForceMode.Acceleration);
