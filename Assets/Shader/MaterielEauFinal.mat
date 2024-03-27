@@ -95,7 +95,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ActualTime: 50.579998
+    - _ActualTime: 10.54
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -120,7 +120,7 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _Metallic: 0
-    - _Noise: 0.2
+    - _Noise: 0.27
     - _OcclusionStrength: 1
     - _Parallax: 0.005
     - _QueueControl: 0
@@ -128,29 +128,29 @@ Material:
     - _ReceiveShadows: 1
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
-    - _Smothnesss: 0.6
+    - _Smothnesss: 0.827
     - _SpecularHighlights: 1
     - _Speed: 0
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
-    - _Strength: 0.292
+    - _Strength: 0.3
     - _Surface: 0
-    - _WaveLength: 50
-    - _WaveLength2: 100
+    - _WaveLength: 55.2
+    - _WaveLength2: 7.2
     - _WaveLength3: 30
-    - _WaveSteepness: 0.2
-    - _WaveSteepness2: 0.273
-    - _WaveSteepness3: 0.061
+    - _WaveSteepness: 0.259
+    - _WaveSteepness2: 0.282
+    - _WaveSteepness3: 0.277
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _foamSize: 5.14
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
-    - _DeepWaterColor: {r: 0.09611963, g: 0.15067539, b: 0.4528302, a: 1}
+    - _DeepWaterColor: {r: 0.15606974, g: 0.40807074, b: 0.6037736, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FoamColor: {r: 0.8962264, g: 1.1223799, b: 2, a: 1}
-    - _ShallowWaterColor: {r: 0.16887684, g: 0.17832921, b: 0.6509434, a: 0.65882355}
+    - _ShallowWaterColor: {r: 0.057529315, g: 0.91417027, b: 0.9528302, a: 0.65882355}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WaveDirection: {r: 0, g: 0, b: 1, a: 0}
     - _WaveDirection2: {r: -0.3, g: 0, b: 1, a: 0}
