@@ -8,7 +8,7 @@ public class BateauMouvement : MonoBehaviour
 {
     [Header("Variables de mouvement")]
     [SerializeField]
-    int rotationSpeed = 5;
+    float maxRotationSpeed; 
     [SerializeField]
     int acceleration = 10;
     [SerializeField]
@@ -20,17 +20,25 @@ public class BateauMouvement : MonoBehaviour
 
     //Variables uniquement utilisé pour calculs
     private float forceVitesse = 0;
-    private float forceRotation = 0;
+    private float directionRotation = 0;
+    private float forceRotation;
+    float rotationSpeed = 5;
     private float sqrVitesseMax;
+    private float SaveRotation;
+
+    //Variable d'interaction avec les flotteur de rotation
+    private int nbFlotteursRota = 0;
+    private int nbFlotteurImmergé = 0;
     
     //Composants instanciés ou récupéré à runtime
     private Controles inputMap;
     private Rigidbody rb;
 
 
-    void Start()
+    void Awake()
     {
         sqrVitesseMax = vitesseMax * vitesseMax;
+        SaveRotation = rotationSpeed;
         rb = gameObject.GetComponent<Rigidbody>();
         inputMap = new Controles();
         inputMap.Enable();
@@ -42,26 +50,21 @@ public class BateauMouvement : MonoBehaviour
         //Pour Debug uniquement à retirer pour les build
         //Permet de changer la vitesse max à runtime dans l'éditeur
         sqrVitesseMax = vitesseMax * vitesseMax;
-
-
+        SaveRotation = maxRotationSpeed;
         Mouvement();
     }
 
 
     private void Mouvement() 
     {
-        //Cimetière des essais de rotation (This is fine)
-        //transform.RotateAround(tranformMoteur.position, Vector3.up, forceRotation * Time.deltaTime);
-        //Debug.DrawLine(transform.right, transform.right * 3, new Color(0, 0, 1.0f));
-        //rb.AddRelativeTorque(Vector3.up * forceRotation);
-        //Vector3 force = transform.right * forceRotation;
-        //rb.AddForceAtPosition(force, tranformMoteur.position, ForceMode.Acceleration);
+        Debug.Log("nbFlotteurRota = " + nbFlotteursRota + " nb Flotteur immergé = " + nbFlotteurImmergé);
+        float facteurImmertion = nbFlotteurImmergé / nbFlotteursRota;
 
 
         //ajout de la vitesse
-        rb.AddForce(transform.forward * forceVitesse, ForceMode.Acceleration);
+        rb.AddForce(transform.forward * forceVitesse * facteurImmertion, ForceMode.Acceleration);
         
-        //V2rification que la vitesse max n'est pas déplacée
+        //Vérification que la vitesse max n'est pas dépassée
         //Test sur la moitié de la vitesse max pour le déplacement à reculon
         if (rb.velocity.sqrMagnitude > sqrVitesseMax / 2)
         {
@@ -75,27 +78,28 @@ public class BateauMouvement : MonoBehaviour
             rb.AddForce(contreForce, ForceMode.Acceleration);
         }
 
-        //Rotation
-        /*if (forceRotation != 0)
+        
+        //Modification de la vitesse de rotation si le navire est à l'arrêt ou en mouvement
+        if(Vector3.Dot(transform.forward, rb.velocity) < 2)
         {
-            forceRotation -= rb.velocity.sqrMagnitude/10;
-            Debug.Log(rb.velocity.sqrMagnitude);
+            rotationSpeed = Mathf.Lerp(rotationSpeed, 0, 0.1f);
         }
-*/
-        if(rb.velocity.sqrMagnitude > 1)
+        else
         {
-            transform.Rotate(0, forceRotation * Time.deltaTime, 0);
+            rotationSpeed = Mathf.Lerp(rotationSpeed, SaveRotation, 0.5f);
         }
 
-
-
-        //Réduction de l'inertie latérale
-        float velocityInDirection = Vector3.Dot(rb.velocity, transform.right);
-        rb.AddForce((-velocityInDirection / 2) * transform.right);
-
-
+        //Application de la rotation
+        rb.AddForceAtPosition(directionRotation * rotationSpeed * -transform.right * facteurImmertion, tranformMoteur.position, ForceMode.Acceleration);
     }
 
+    //Fonction de modifiaction des flotteurs de Rotation
+    public void AddFlotteur() { nbFlotteursRota++; }
+    public void FlottImmerge() { nbFlotteurImmergé++; }
+    public void FlottEmerge() { nbFlotteurImmergé--; }  
+    
+    
+    //Section de gestion des inputs :
     private void StartMove(InputAction.CallbackContext context)
     {
         Vector2 vect = context.ReadValue<Vector2>();
@@ -110,12 +114,12 @@ public class BateauMouvement : MonoBehaviour
     private void StartTourner(InputAction.CallbackContext context)
     {
         Vector2 vect = context.ReadValue<Vector2>();
-        forceRotation = vect.x * rotationSpeed; 
+        directionRotation = vect.x; 
     }
 
     private void StopTourner(InputAction.CallbackContext context)
     {
-        forceRotation = 0;
+        directionRotation = 0;
     }
 
     private void Subscribe()
