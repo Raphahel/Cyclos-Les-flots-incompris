@@ -57,8 +57,10 @@ public class BateauMouvement : MonoBehaviour
 
     private void Mouvement() 
     {
-        Debug.Log("nbFlotteurRota = " + nbFlotteursRota + " nb Flotteur immergé = " + nbFlotteurImmergé);
-        float facteurImmertion = nbFlotteurImmergé / nbFlotteursRota;
+        if(nbFlotteursRota !=  0)
+        {
+            float facteurImmertion = nbFlotteurImmergé / nbFlotteursRota;
+        }
 
 
         //ajout de la vitesse
