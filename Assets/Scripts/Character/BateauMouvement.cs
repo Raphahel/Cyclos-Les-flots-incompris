@@ -34,6 +34,8 @@ public class BateauMouvement : MonoBehaviour
     private Controles inputMap;
     private Rigidbody rb;
 
+    private float facteurImmertion = 1;
+
 
     void Awake()
     {
