@@ -1,0 +1,13 @@
+﻿title:DialogueTest
+tags:
+---
+Naya:Bonjour !
+Marchande:Pardon, tu es... ? Oh ! Oh c'est toi ?
+<<AddEvenement Test>>
+<<ValideEvenement Test>>
+<<if GetEventState("Test")>>
+Test:oui
+<<else>>
+Test:non
+<<endif>>
+===

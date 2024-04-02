@@ -7,7 +7,7 @@ using UnityEngine;
 
 public class GestionnaireVagues : MonoBehaviour
 {
-    public static GestionnaireVagues instance;
+    public static GestionnaireVagues instance { get; private set;  }
 
     private float actualTime;
     private const float PI = 3.14159265f;

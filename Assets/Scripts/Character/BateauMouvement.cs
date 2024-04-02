@@ -8,11 +8,19 @@ public class BateauMouvement : MonoBehaviour
 {
     [Header("Variables de mouvement")]
     [SerializeField]
-    float maxRotationSpeed; 
+    private float maxRotationSpeed; 
     [SerializeField]
-    int acceleration = 10;
+    private int acceleration = 10;
     [SerializeField]
-    float vitesseMax = 500;
+    private float vitesseMax = 500;
+
+    [Header("Variable batterie")]
+    [SerializeField]
+    private float batterieMax = 100f;
+    [SerializeField]
+    private float batterieRecharge;
+    [SerializeField]
+    private float BatteriePuissance;
 
     [Header("Game objets")]
     [SerializeField]
@@ -21,8 +29,7 @@ public class BateauMouvement : MonoBehaviour
     //Variables uniquement utilisé pour calculs
     private float forceVitesse = 0;
     private float directionRotation = 0;
-    private float forceRotation;
-    float rotationSpeed = 5;
+    private float rotationSpeed = 5;
     private float sqrVitesseMax;
     private float SaveRotation;
 
@@ -65,6 +72,7 @@ public class BateauMouvement : MonoBehaviour
         }
 
 
+
         //ajout de la vitesse
         rb.AddForce(transform.forward * forceVitesse * facteurImmertion, ForceMode.Acceleration);
         
@@ -97,12 +105,15 @@ public class BateauMouvement : MonoBehaviour
         rb.AddForceAtPosition(directionRotation * rotationSpeed * -transform.right * facteurImmertion, tranformMoteur.position, ForceMode.Acceleration);
     }
 
-    //Fonction de modifiaction des flotteurs de Rotation
+
+
+    //Fonction de modification des flotteurs de Rotation
     public void AddFlotteur() { nbFlotteursRota++; }
     public void FlottImmerge() { nbFlotteurImmergé++; }
     public void FlottEmerge() { nbFlotteurImmergé--; }  
     
     
+
     //Section de gestion des inputs :
     private void StartMove(InputAction.CallbackContext context)
     {
