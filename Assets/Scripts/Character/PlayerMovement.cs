@@ -115,11 +115,19 @@ public class PlayerMovement : MonoBehaviour
         wantJump = false;
     }
 
-    private void Subscribe()
+    public void Subscribe()
     {
         inputMap.MovementChar.Move.performed += StartMove;
         inputMap.MovementChar.Move.canceled += StopMove;
         inputMap.MovementChar.Jump.performed += Jump;
         inputMap.MovementChar.Jump.canceled += JumpReleased;
+    }
+
+    public void Unsubscribe()
+    {
+        inputMap.MovementChar.Move.performed -= StartMove;
+        inputMap.MovementChar.Move.canceled -= StopMove;
+        inputMap.MovementChar.Jump.performed -= Jump;
+        inputMap.MovementChar.Jump.canceled -= JumpReleased;
     }
 }

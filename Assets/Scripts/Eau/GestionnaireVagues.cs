@@ -8,12 +8,16 @@ using UnityEngine;
 public class GestionnaireVagues : MonoBehaviour
 {
     public static GestionnaireVagues instance { get; private set;  }
+    private ShaderValue ValeursCibles = new ShaderValue();
 
+    private bool changeValeur = false;
     private float actualTime;
     private const float PI = 3.14159265f;
 
     [SerializeField]
     private Renderer WaveShader;
+    [SerializeField]
+    private ConstanteVagues VagueData;
 
     [Header("Wave 1")]
     [SerializeField]
@@ -22,8 +26,6 @@ public class GestionnaireVagues : MonoBehaviour
     private float WaveLength;
     [SerializeField]
     private Vector3 WaveDirection;
-    [SerializeField]
-    private float speed;
 
     [Header("Wave 2")]
     [SerializeField]
@@ -54,11 +56,6 @@ public class GestionnaireVagues : MonoBehaviour
         }
     }
 
-    /*private void UpdateShaderData()
-    {
-       
-    }*/
-
     public Vector3 HauteurVague(Vector3 pos)
     {
         Vector3 vagueHauteur = Vector3.zero;
@@ -86,6 +83,8 @@ public class GestionnaireVagues : MonoBehaviour
     
     private void Start()
     {
+
+        //Applique les valeurs actuelles du shader au gestionnaire
         WaveSteepness = WaveShader.sharedMaterial.GetFloat("_WaveSteepness");
         WaveLength = WaveShader.sharedMaterial.GetFloat("_WaveLength");
         WaveDirection = WaveShader.sharedMaterial.GetVector("_WaveDirection");
@@ -97,10 +96,55 @@ public class GestionnaireVagues : MonoBehaviour
         WaveSteepness3 = WaveShader.sharedMaterial.GetFloat("_WaveSteepness3");
         WaveLength3 = WaveShader.sharedMaterial.GetFloat("_WaveLength3");
         WaveDirection3 = WaveShader.sharedMaterial.GetVector("_WaveDirection3");
+
+
+        //Applique les valeurs actuelles du shader à valeursCibles afin de ne pas dévier
+        ValeursCibles.WaveSteepness = WaveShader.sharedMaterial.GetFloat("_WaveSteepness");
+        ValeursCibles.WaveLength = WaveShader.sharedMaterial.GetFloat("_WaveLength");
+        ValeursCibles.WaveDirection = WaveShader.sharedMaterial.GetVector("_WaveDirection");
+
+        ValeursCibles.WaveSteepness2 = WaveShader.sharedMaterial.GetFloat("_WaveSteepness2");
+        ValeursCibles.WaveLength2 = WaveShader.sharedMaterial.GetFloat("_WaveLength2");
+        ValeursCibles.WaveDirection2 = WaveShader.sharedMaterial.GetVector("_WaveDirection2");
+
+        ValeursCibles.WaveSteepness3 = WaveShader.sharedMaterial.GetFloat("_WaveSteepness3");
+        ValeursCibles.WaveLength3 = WaveShader.sharedMaterial.GetFloat("_WaveLength3");
+        ValeursCibles.WaveDirection3 = WaveShader.sharedMaterial.GetVector("_WaveDirection3");
     }
+
     private void FixedUpdate()
     {
+        ValeursCibles = VagueData.vaguesCalme;
+        lerpShader(ValeursCibles);
         actualTime = Time.time;
         WaveShader.sharedMaterial.SetFloat("_ActualTime", actualTime);
+    }
+
+    //change les valeur de façon linéaire entre les nouvelles valeurs et les valleurs actuelles.
+    private void lerpShader(ShaderValue newValue)
+    {
+        WaveSteepness = Mathf.Lerp(WaveSteepness, newValue.WaveSteepness, 0.1f * Time.fixedDeltaTime);
+        WaveLength = Mathf.Lerp(WaveLength, newValue.WaveLength, 0.1f * Time.fixedDeltaTime);
+        WaveDirection = Vector3.Lerp(WaveDirection, newValue.WaveDirection, 0.1f * Time.fixedDeltaTime);
+
+        WaveSteepness2 = Mathf.Lerp(WaveSteepness2, newValue.WaveSteepness2, 0.1f * Time.fixedDeltaTime);
+        WaveLength2 = Mathf.Lerp(WaveLength2, newValue.WaveLength2, 0.1f * Time.fixedDeltaTime);
+        WaveDirection2 = Vector3.Lerp(WaveDirection2, newValue.WaveDirection2, 0.1f * Time.fixedDeltaTime);
+
+        WaveSteepness3 = Mathf.Lerp(WaveSteepness3, newValue.WaveSteepness3, 0.1f * Time.fixedDeltaTime);
+        WaveLength3 = Mathf.Lerp(WaveLength3, newValue.WaveLength3, 0.1f * Time.fixedDeltaTime);
+        WaveDirection3 = Vector3.Lerp(WaveDirection3, newValue.WaveDirection3, 0.1f * Time.fixedDeltaTime);
+
+        WaveShader.sharedMaterial.SetFloat("_WaveSteepness", WaveSteepness);
+        WaveShader.sharedMaterial.SetFloat("_WaveLength", WaveLength);
+        WaveShader.sharedMaterial.SetVector("_WaveDirection", WaveDirection);
+
+        WaveShader.sharedMaterial.SetFloat("_WaveSteepness2", WaveSteepness2);
+        WaveShader.sharedMaterial.SetFloat("_WaveLength2", WaveLength2);
+        WaveShader.sharedMaterial.SetVector("_WaveDirection2", WaveDirection2);
+
+        WaveShader.sharedMaterial.SetFloat("_WaveSteepness3", WaveSteepness3);
+        WaveShader.sharedMaterial.SetFloat("_WaveLength3", WaveLength3);
+        WaveShader.sharedMaterial.SetVector("_WaveDirection3", WaveDirection3);
     }
 }
