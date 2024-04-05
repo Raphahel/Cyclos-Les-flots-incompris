@@ -99,7 +99,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ActualTime: 51.42
+    - _ActualTime: 47.96
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -142,9 +142,9 @@ Material:
     - _WaveLength: 74.99981
     - _WaveLength2: 34.999905
     - _WaveLength3: 35
-    - _WaveSteepness: 0.10000019
-    - _WaveSteepness2: 0.10000019
-    - _WaveSteepness3: 0.05
+    - _WaveSteepness: 0.2
+    - _WaveSteepness2: 0
+    - _WaveSteepness3: 0
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _foamSize: 3.19
