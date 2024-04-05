@@ -5,7 +5,6 @@ tags:
 <<AddEvenement DejaCroiseUmibozu>>
 <<AddEvenement DejaCroiseSebastian>>
 
-<<ValideEvenement SiVaincuUmibozu>>
 <<if GetEventState("SiVaincuUmibozu")>>
 
 Naya:Ray ! Ça a marché ! Il n’a pas coulé mon bateau 

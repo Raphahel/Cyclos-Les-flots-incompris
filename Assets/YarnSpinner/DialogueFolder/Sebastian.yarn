@@ -5,13 +5,17 @@ tags:
 <<AddEvenement DejaCroiseUmibozu>>
 <<AddEvenement DejaCroiseRay>>
 
-//<<ValideEvenement DejaCroiseUmibozu>>
-<<ValideEvenement DejaCroiseRay>>
-
 <<if GetEventState("SiVaincuUmibozu")>>
-Naya:BOUUUUUM, J'AI EXPLOSE C'BARAD DE GRO MONSTRE
 
-Sebastian:😭
+Naya:J'ai réussi a parler a l'Umibozu ! 
+
+Sebastian:Vraiment ? whow... Comme Ray ? Alors il t'a donné son secret ? 
+
+Naya:Il n'y a pas vraiment de secret, il fallait juste lui dire ne pas avoir peur de lui.
+
+Sebastian:Je me sens bête d'avoir perdu un bateau pour ça du coup...
+
+Naya:Au moins toi ça ne t'a pas découragé... je connais une marchande qui ne s'en est jamais remise 
 
 <<elseif GetEventState("DejaCroiseUmibozu")>>
 Naya:J’ai vu le monstre ! Dans la tempête ! 

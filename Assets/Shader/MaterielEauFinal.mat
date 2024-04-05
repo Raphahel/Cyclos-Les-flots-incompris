@@ -99,7 +99,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ActualTime: 32.68
+    - _ActualTime: 14.92
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
