@@ -266,7 +266,6 @@ public class BoidManager : MonoBehaviour
                 fishVelocity[i] = fish_velocity[i];
             });
             #endregion
-            Debug.Log("Fin coroutine");
             yield return new WaitForSeconds(tickDelay);
         }
     }
