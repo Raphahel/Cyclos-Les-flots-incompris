@@ -22,6 +22,8 @@ public class ShaderValue
 [CreateAssetMenu]
 public class ConstanteVagues : ScriptableObject
 {
+
+    //Ces chaines des caractères sont définit dans le scriptable object situé dans Assets/Scripts/Eau
     [SerializeField]
     public ShaderValue vaguesCalme;
     [SerializeField]
@@ -29,4 +31,20 @@ public class ConstanteVagues : ScriptableObject
     [SerializeField]
     public ShaderValue vaguesTempete;
 
+    //Renvois le preset de vagues correspondant à la chaine de caractère
+    public ShaderValue chooseWave(string nom)
+    {
+        switch (nom)
+        {
+            case "calme":
+                return vaguesCalme;
+            case "agite":
+                return vaguesAgite;
+            case "tempete":
+                return vaguesTempete;
+            default:
+                Debug.Log("WARNING : Unknown wave ! Defaulted to calme.");
+                return vaguesCalme;
+        }
+    }
 }

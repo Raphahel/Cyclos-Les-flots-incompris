@@ -78,6 +78,12 @@ public class GestionnaireVagues : MonoBehaviour
             (d.y * (a * Mathf.Cos(f))) 
             );
     }
+
+    //Utilisé pour récupérer un ShaderValue dans ConstantVagues.cs
+    public void SetVague(string nom)
+    {
+        ValeursCibles = VagueData.chooseWave(nom);
+    }
     
     private void Start()
     {
