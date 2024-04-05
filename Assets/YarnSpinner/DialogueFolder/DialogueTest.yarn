@@ -1,4 +1,4 @@
-﻿title:DialogueTest
+﻿title:Start
 tags:
 ---
 Naya:Bonjour !
@@ -7,7 +7,17 @@ Marchande:Pardon, tu es... ? Oh ! Oh c'est toi ?
 <<ValideEvenement Test>>
 <<if GetEventState("Test")>>
 Test:oui
+<<jump Start2>>
 <<else>>
 Test:non
 <<endif>>
+===
+
+title:Saucisse
+tags: 
+
+---
+Naya:yo les gens
+John Wick:Je vais vous tuer
+Naya:J'ai un quad nounours
 ===

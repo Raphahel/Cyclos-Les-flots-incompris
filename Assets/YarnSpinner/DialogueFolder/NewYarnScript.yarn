@@ -1,6 +1,47 @@
-﻿title: NewYarnScript
+﻿title: Start2
 tags:
 ---
-Naya:zefagqzegfqz
+<<AddEvenement SiUmibozu>>
+<<AddEvenement PasPartie>>
+<<AddEvenement DejaPartie>>                                                                                                                                                                                                                                          
 
+<<if GetEventState("SiUmibozu")>>
+<<ValideEvenement PasPartie>>
+<<elseif GetEventState("PasPartie")>>
+
+Marchande:Le grand départ est aujourd’hui hein ? Tu viens dire adieu à tout le monde ? 
+
+Naya:Je vais revenir hein. 
+
+Marchande:C’est ça, soit je ne te revois jamais, soit j’ai le temps de boire six cafés avant que tu revienne te réfugier ici après avoir manqué de te faire dévorer par un monstre !  
+
+Naya:Il t’es arrivé quoi au juste pour que tu finisse… comme ça ? 
+
+Marchande:… j’ai pas envie d’en parler. Mais par pitié, ne t’approche pas de cette fichue tempête, c’est tout ce que j’ai a dire. 
+
+Marchande:De toute façon je suis sur que tu croiseras d’autres victimes de ce monstre, je ne suis pas la seule. 
+
+Naya:Oh donc ils ont eux aussi survécu ? Ce monstre n’est pas si terrible alors ? 
+
+<<else>>
+
+Marchande:J’imagine que tu as croisé ces horribles monstres hein ?? Moi il me suffit de m’approcher a quelques mètres de l’eau pour voir des monstres remplir l’océan.
+Marchande:C’EST HORS DE QUESTION QUE J’Y REMETTE LES LES PIEDS.
+
+Naya:Vraiment ? Et tes livraisons alors ? 
+
+Marchande:Disons que je suis en pause, j’ai besoin de me reposer 
+
+Naya:Ça fait trois ans que tu es en pause… 
+
+Marchande:Que ces horribles monstres quittent ces eaux et on en reparlera… Tu ne peux rien faire contre eux toi ? C’est ton métier non ?
+
+Naya:Je suis juste Zoologiste, je cherche à comprendre les créatures, pas à les combattre 
+
+Marchande:Facile à dire de la part de quelqu’un qui n’a jamais mis les pieds dans l’eau et qui n’a jamais manqué de se faire tuer par un monstre…
+
+
+<<jump Saucisse>>
+<<endif>>
 ===
+
