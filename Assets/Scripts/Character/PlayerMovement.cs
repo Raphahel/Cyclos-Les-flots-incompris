@@ -79,10 +79,12 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(vitesseChute * -transform.up);
         }
 
-
+        //Gestion du mouvment
         if (ordreMouvemement != Vector2.zero)
         {
             transform.Translate (ordreMouvemement * vitesse * Time.deltaTime);
+            
+            //Gestion de l'animation et du flip de l'asset
             if(ordreMouvemement.x == 1)
             {
                 animator.Play("WalkCycle");

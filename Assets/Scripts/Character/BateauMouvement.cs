@@ -90,7 +90,7 @@ public class BateauMouvement : MonoBehaviour
     {
         //Pour Debug uniquement à retirer pour les build
         //Permet de changer la vitesse max à runtime dans l'éditeur
-        sqrVitesseMax = vitesseMax * vitesseMax;
+        //sqrVitesseMax = vitesseMax * vitesseMax;
         SaveRotation = maxRotationSpeed;
         Mouvement();
     }
