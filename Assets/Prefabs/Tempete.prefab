@@ -4874,7 +4874,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92161585f222eac418bb0458c90a5936, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speedModifier: 0.005
+  speedModifier: 0.001
   delay: 5
   radius: 250
 --- !u!135 &628233640870597108
