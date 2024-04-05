@@ -65,9 +65,6 @@
         },
         {
             "m_Id": "563fd662f9e343e687d44f4e23e614ae"
-        },
-        {
-            "m_Id": "dbbec652c7ad405f8665e79345219f2d"
         }
     ],
     "m_Keywords": [],
@@ -4899,7 +4896,7 @@
     "m_RefNameGeneratedByDisplayName": "ActualTime",
     "m_DefaultReferenceName": "_ActualTime",
     "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
+    "m_GeneratePropertyBlock": false,
     "m_UseCustomSlotLabel": false,
     "m_CustomSlotLabel": "",
     "m_DismissedVersion": 0,
@@ -5783,9 +5780,6 @@
         },
         {
             "m_Id": "563fd662f9e343e687d44f4e23e614ae"
-        },
-        {
-            "m_Id": "dbbec652c7ad405f8665e79345219f2d"
         }
     ]
 }
@@ -10199,34 +10193,6 @@
     "hlslDeclarationOverride": 0,
     "m_Hidden": false,
     "m_Value": 15.0,
-    "m_FloatType": 0,
-    "m_RangeValues": {
-        "x": 0.0,
-        "y": 1.0
-    }
-}
-
-{
-    "m_SGVersion": 1,
-    "m_Type": "UnityEditor.ShaderGraph.Internal.Vector1ShaderProperty",
-    "m_ObjectId": "dbbec652c7ad405f8665e79345219f2d",
-    "m_Guid": {
-        "m_GuidSerialized": "2d2502ff-1bc6-476d-a9ae-b270fbf03ec7"
-    },
-    "m_Name": "Speed",
-    "m_DefaultRefNameVersion": 1,
-    "m_RefNameGeneratedByDisplayName": "Speed",
-    "m_DefaultReferenceName": "_Speed",
-    "m_OverrideReferenceName": "",
-    "m_GeneratePropertyBlock": true,
-    "m_UseCustomSlotLabel": false,
-    "m_CustomSlotLabel": "",
-    "m_DismissedVersion": 0,
-    "m_Precision": 0,
-    "overrideHLSLDeclaration": false,
-    "hlslDeclarationOverride": 0,
-    "m_Hidden": false,
-    "m_Value": 0.0,
     "m_FloatType": 0,
     "m_RangeValues": {
         "x": 0.0,

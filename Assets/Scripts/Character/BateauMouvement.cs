@@ -6,25 +6,63 @@ using UnityEngine.ProBuilder.Shapes;
 
 public class BateauMouvement : MonoBehaviour
 {
+    [Header("Vie")]
+    [SerializeField]
+    private int vie = 100;
+
     [Header("Variables de mouvement")]
     [SerializeField]
-    float maxRotationSpeed; 
+    private float maxRotationSpeed; 
     [SerializeField]
-    int acceleration = 10;
+    private int acceleration = 10;
     [SerializeField]
-    float vitesseMax = 500;
+    private float vitesseMax = 500;
 
-    [Header("Game objets")]
+    [Header("Variable batterie")]
+    [SerializeField]
+    private float batterieMax = 100f;
+    [SerializeField]
+    private float batterieRecharge;
+    [SerializeField]
+    private float BatteriePuissance;
+    [SerializeField]
+    private bool isCharging = false;
+    [SerializeField]
+    private float BatterieDrain;
+    [SerializeField]
+    private float RalentissementBattery = 0.5f;
+
+    [Header("Composants")]
     [SerializeField]
     private Transform tranformMoteur;
+    [SerializeField]
+    private AudioSource audioMoteur;
+    [SerializeField]
+    private AudioSource audioVague;
+
+    //Constante de dommage
+    private const int DOMMAGEFAIBLE = 15;
+    private const int DOMMAGEMOYEN = 25;
+    private const int DOMMAGEFORT = 40;
+
+    //Constante son et pitch du Moteur
+    private const float VOLUMEMAX = 0.5f;
+    private const float VOLUMEMIN = 0f;
+    private float volume = 0f;
+    private const float VOLUMEMAXVAGUE = 0.6f;
+    private const float VOLUMEMINVAGUE = 0.1f;
+    private float volumeVague = 0f;
+    private const float PITCHMAX = 0.9f;
+    private const float PITCHMIN = 0.4f;
+    private float pitch = 0f;
 
     //Variables uniquement utilisé pour calculs
     private float forceVitesse = 0;
     private float directionRotation = 0;
-    private float forceRotation;
-    float rotationSpeed = 5;
+    private float rotationSpeed = 5;
     private float sqrVitesseMax;
     private float SaveRotation;
+    private float ralentissement = 1f;
 
     //Variable d'interaction avec les flotteur de rotation
     private int nbFlotteursRota = 0;
@@ -42,6 +80,7 @@ public class BateauMouvement : MonoBehaviour
         sqrVitesseMax = vitesseMax * vitesseMax;
         SaveRotation = rotationSpeed;
         rb = gameObject.GetComponent<Rigidbody>();
+        BatteriePuissance = batterieMax;
         inputMap = new Controles();
         inputMap.Enable();
         Subscribe();
@@ -65,8 +104,34 @@ public class BateauMouvement : MonoBehaviour
         }
 
 
+        //Application des ralentissements si la batterie est vide/Pleine
+        if(BatteriePuissance == 0)
+        {
+            ralentissement = Mathf.Lerp(ralentissement, RalentissementBattery, 1); 
+        }
+        else
+        {
+            ralentissement = Mathf.Lerp(ralentissement, 1f, 1);
+        }
+
+
+        //Rechargement/Vide de la batterie
+        if (isCharging)
+        {
+            BatteriePuissance += batterieRecharge * Time.fixedDeltaTime;
+            BatteriePuissance = Mathf.Min(BatteriePuissance, batterieMax);
+        }
+        else if(forceVitesse != 0)
+        {
+            BatteriePuissance -= BatterieDrain * Time.fixedDeltaTime;
+            BatteriePuissance = Mathf.Max(0, BatteriePuissance);
+        }
+
+        
+        //Calcul du déplacement
+
         //ajout de la vitesse
-        rb.AddForce(transform.forward * forceVitesse * facteurImmertion, ForceMode.Acceleration);
+        rb.AddForce(transform.forward * forceVitesse * facteurImmertion * ralentissement, ForceMode.Acceleration);
         
         //Vérification que la vitesse max n'est pas dépassée
         //Test sur la moitié de la vitesse max pour le déplacement à reculon
@@ -94,15 +159,106 @@ public class BateauMouvement : MonoBehaviour
         }
 
         //Application de la rotation
-        rb.AddForceAtPosition(directionRotation * rotationSpeed * -transform.right * facteurImmertion, tranformMoteur.position, ForceMode.Acceleration);
+        rb.AddForceAtPosition(directionRotation * rotationSpeed * -transform.right * facteurImmertion * ralentissement, tranformMoteur.position, ForceMode.Acceleration);
+        
+
+        //Changement du son du moteur selon si le joueur accelère ou non
+        if(forceVitesse != 0)
+        {
+            volume = Mathf.Lerp(volume, VOLUMEMAX, 1f * Time.fixedDeltaTime / 2);
+        }
+        else
+        {
+            volume = Mathf.Lerp(volume, VOLUMEMIN, 1f * Time.fixedDeltaTime * 2);
+        }
+        audioMoteur.volume = volume;
+
+        if (forceVitesse != 0)
+        {
+            pitch = Mathf.Lerp(pitch, PITCHMAX, 1f * Time.fixedDeltaTime / 2);
+        }
+        else
+        {
+            pitch = Mathf.Lerp(pitch, PITCHMIN, 1f * Time.fixedDeltaTime);
+        }
+        audioMoteur.pitch = pitch;
+
+        //Changement du son des vagues selon la vélocité du joueur
+        if (Mathf.Abs(Vector3.Normalize(rb.velocity).x) >= 0.1f || Mathf.Abs(Vector3.Normalize(rb.velocity).z) >= 0.1f)
+        {
+            volumeVague = Mathf.Lerp(volumeVague, VOLUMEMAXVAGUE, 0.5f * Time.fixedDeltaTime / 2);
+        }
+        else
+        {
+            volumeVague = Mathf.Lerp(volumeVague, VOLUMEMINVAGUE, 1f * Time.fixedDeltaTime);
+        }
+        audioVague.volume = volumeVague;
+
     }
 
-    //Fonction de modifiaction des flotteurs de Rotation
+    //Detection de collision et application de dommage
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.layer == LayerMask.NameToLayer("Bordures"))
+        {
+            switch (rb.velocity.sqrMagnitude)
+            {
+                case < 7:
+                    break;
+                case < 13:
+                    SubirDommage(DOMMAGEFAIBLE);
+                    break;
+                case < 25:
+                    SubirDommage(DOMMAGEMOYEN);
+                    break;
+                default:
+                    SubirDommage(DOMMAGEFORT);
+                    break;
+            }
+     
+        }
+    }
+
+    public void SubirDommage(int dommages)
+    {
+        vie -= dommages;
+        Mathf.Max(0, vie);
+        if(vie <= 0)
+        {
+            Debug.Log("Le DC");
+        }
+    }
+
+
+
+
+    //Fonction de modifiaction des paramètre de la batterie
+    public void EntrerRecharge() { isCharging = true; }
+
+    public void leaveRecharge() { isCharging = false; }
+
+    public void ChangeDrain(float drain)
+    {
+        if(drain >= 0) 
+        {
+            BatterieDrain = drain;
+        }
+        else
+        {
+            drain = 0f;
+        }
+    }
+
+
+
+
+    //Fonction de modification des flotteurs de Rotation
     public void AddFlotteur() { nbFlotteursRota++; }
     public void FlottImmerge() { nbFlotteurImmergé++; }
     public void FlottEmerge() { nbFlotteurImmergé--; }  
     
     
+
     //Section de gestion des inputs :
     private void StartMove(InputAction.CallbackContext context)
     {
