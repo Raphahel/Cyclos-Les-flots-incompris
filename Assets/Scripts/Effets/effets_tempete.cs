@@ -6,6 +6,8 @@ public class effets_tempete : MonoBehaviour
 {
     [SerializeField]
     private GameObject pluie, fog;
+    [SerializeField]
+    ParticleSystem pluieEffect;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +40,7 @@ public class effets_tempete : MonoBehaviour
             Debug.Log("saucisse");
             pluie.SetActive(false);
             //fog.SetActive(false);
+
         }
 
 

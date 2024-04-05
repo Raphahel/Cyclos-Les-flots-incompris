@@ -1,0 +1,68 @@
+﻿title: Marchande
+tags:
+---
+<<AddEvenement SiVaincuUmibozu>>
+<<AddEvenement DejaCroiseUmibozu>>
+<<AddEvenement DejaPartie>>
+
+<<ValideEvenement DejaCroiseUmibozu>>
+<<if GetEventState("SiVaincuUmibozu")>>
+
+Naya:Devines quoi… J’ai parlé a l’Umibozu ! 
+
+Marchande:Te moques pas de moi ! Laisse moi boire mon café tranquille, si tu veux te faire bouffer par les monstres, c’est ton probleme !
+
+Naya:Non non, j’ai vraiment réussi à échapper à l'Umibozu ! Il n’a pas coulé mon bateau ! Je te disais bien qu’il y avait un moyen ! 
+
+Marchande:… mais alors pourquoi moi il m’a coulé ? 
+
+Naya:Il a sa manière a lui de voir les choses
+
+<<elseif GetEventState("DejaCroiseUmibozu")>>
+
+Naya:J’ai été dans la tempête ! Il.. Il y avait ce monstre ? 
+
+Marchande:TU VOIS ?! Je te l’avais dit ! Aucune chance ! … Tu veux un café pour fêter ça ? 
+
+Naya:Fêter quoi ? 
+
+Marchande:Ta prise de conscience ! Pitié, dit moi que tu vas arrêter d’étudier ces monstres, tu as bien vu ce que ça donnait non ? 
+
+Naya:Premièrement je n’ai pas vraiment envie de finir accro au café comme toi, et deuxièmement, hors de question que j’abandonne ! J’ai vu un monstre ! J’ai encore plus envie d’en apprendre sur lui ! 
+
+<<elseif GetEventState("DejaPartie")>>
+Marchande:J’imagine que tu as croisé ces horribles monstres hein ?? Moi il me suffit de m’approcher a quelques mètres de l’eau pour voir des monstres remplir l’océan.
+Marchande:C’EST HORS DE QUESTION QUE J’Y REMETTE LES LES PIEDS.
+
+Naya:Vraiment ? Et tes livraisons alors ? 
+
+Marchande:Disons que je suis en pause, j’ai besoin de me reposer 
+
+Naya:Ça fait trois ans que tu es en pause… 
+
+Marchande:Que ces horribles monstres quittent ces eaux et on en reparlera… Tu ne peux rien faire contre eux toi ? C’est ton métier non ?
+
+Naya:Je suis juste Zoologiste, je cherche à comprendre les créatures, pas à les combattre 
+
+Marchande:Facile à dire de la part de quelqu’un qui n’a jamais mis les pieds dans l’eau et qui n’a jamais manqué de se faire tuer par un monstre…
+
+<<else>>
+
+Marchande:Le grand départ est aujourd’hui hein ? Tu viens dire adieu à tout le monde ? 
+
+Naya:Je vais revenir hein. 
+
+Marchande:C’est ça, soit je ne te revois jamais, soit j’ai le temps de boire six cafés avant que tu revienne te réfugier ici après avoir manqué de te faire dévorer par un monstre !  
+
+Naya:Il t’es arrivé quoi au juste pour que tu finisse… comme ça ? 
+
+Marchande:… j’ai pas envie d’en parler. Mais par pitié, ne t’approche pas de cette fichue tempête, c’est tout ce que j’ai a dire. 
+
+Marchande:De toute façon je suis sur que tu croiseras d’autres victimes de ce monstre, je ne suis pas la seule. 
+
+Naya:Oh donc ils ont eux aussi survécu ? Ce monstre n’est pas si terrible alors ? 
+
+
+<<endif>>
+
+===

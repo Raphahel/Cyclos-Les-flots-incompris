@@ -1,0 +1,99 @@
+﻿title: Sebastian
+tags:
+---
+<<AddEvenement SiVaincuUmibozu>>
+<<AddEvenement DejaCroiseUmibozu>>
+<<AddEvenement DejaCroiseRay>>
+
+//<<ValideEvenement DejaCroiseUmibozu>>
+<<ValideEvenement DejaCroiseRay>>
+
+<<if GetEventState("SiVaincuUmibozu")>>
+Naya:BOUUUUUM, J'AI EXPLOSE C'BARAD DE GRO MONSTRE
+
+Sebastian:😭
+
+<<elseif GetEventState("DejaCroiseUmibozu")>>
+Naya:J’ai vu le monstre ! Dans la tempête ! 
+
+Sebastian:Oh ? Et bien bienvenue au club ! Pas trop secouée ? 
+
+Naya:Oui, je peux m’estimer heureuse que mon bateau puisse encore naviguer 
+
+Sebastian:En effet, c’est du bon materiel !  le mien n’a clairement pas eu cette chance, j’ai mis du temps a le réparer, au moins ça a occupé ma “pause” lorsque je me remettais de cette aventure
+
+Naya:Pourquoi il coule les bateaux pour ramener les gens sur l’ile ? Et pourquoi il nous demande si c’est terrifiant ? C’est une question rhétorique ? 
+
+Sebastian:Au risque de te décevoir, j’en sais rien non plus. Tout ce que je sais c’est que j’ai retenu la leçon et que je ne suis pas près de m’approcher à nouveau de cette tempête 
+
+Naya:J’aurais bien aimé lui parler pour comprendre, mais il n’avait pas l’air ouvert à la discussion…
+
+Sebastian:Peut-être que Ray pourrait te donner des informations, c’est un ami à moi, il est connu pour être le seul à avoir échappé à l'Umibozu sans que son bateau ait été coulé ! 
+
+<<if GetEventState("DejaCroiseRay")>>
+<<jump AltRay2>>
+<<else>>
+
+Naya:Vraiment ? Donc ce n’est pas un problème sans issue ! Je vais lui parler ! 
+
+Sebastian:Bonne chance, il n’aime pas trop parler de tout ça, si tu le cherche il est sur l'île de la cascade, et il a pour habitude de squatter le bar les après midi ! 
+
+<<endif>>
+
+<<else>>
+
+Sebastian:Salut ! Je ne t’ai jamais vu dans le coin ! 
+
+Naya:Oui, je viens de partir, c’est la première fois que j’ai mon propre bateau et que je m’éloigne réellement de mon île à vrai dire ! 
+
+Sebastian:Oh, et quel bon soleil pousse ton navire sur ces eaux ? 
+
+Naya:Je suis Zoologiste ! Je cherche a étudier les monstres qui peuplent l’archipel
+
+Sebastian:Les monstres ? Heu, tu sais ce qu’ils font aux navires qui les approchent trop ? 
+
+Naya:Je sais oui, mais c’est ça qui m’intéresse ! Pourquoi ils font ça, essayer de les comprendre et d’en apprendre plus sur eux ! C’est le but de tout chercheur. 
+Je connaissais un chercheur…. il s’est fait attraper par le serpent géant un jour et personne ne l’a jamais revu… Tu pourrais risquer bien plus que de perdre ton bateau, même moi je considère avoir eu de la chance.
+
+Naya:Oh, tu as déjà eu affaire à un monstre marin ?  
+
+Sebastian:Oui… Ca m’a pris du temps avant d’oser me remettre à naviguer, à présent j’ai surmonté ça mais… j’essaye de rester le plus loin possible de cette tempête. 
+
+Naya:Bah C’est les monstres ou la tempete le problème ? 
+
+Sebastian:Ecoutes moi bien, dans le coin si quelque chose a l’air gigantesque et se déplace, c’est forcément un monstre. La nature ne cessera décidément jamais de nous tourmenter !
+
+Naya:Et tu ne connais personne qui aurait échappé à ce monstre ? 
+
+Sebastian:Oh si, j’en connais un, mais il n’aime pas trop en parler, parfois j’ignore si il dit la vérité, mais, c’est mon ami, peut être que tu pourrais lui parler. Il s’appelle Ray, tu devrais le trouver au bar sur l'île de la cascade. Il passe son temps là bas l’après midi… Tu lui paieras un verre de ma part tiens ! 
+
+<<if GetEventState("DejaCroiseRay")>>
+<<jump AltRay1>>
+<<else>>
+Naya:Bon d’accord, pour te remercier du tuyau, mais il a intérêt à être sympa ! 
+
+Sebastian:Oh t’en fais pas, c’est un vieux grand-père super sympa ! 
+
+<<endif>>
+<<endif>>
+===
+
+title:AltRay1
+tags:
+---
+
+Naya:Le vieux grincheux ? Ouais je lui ai parlé mais il m’a envoyé bouler !
+
+Sebastian:Je sais je sais, disons qu’il a sa manière de communiquer, dis lui que tu viens de la part de Sebastien et appelle le par son prénom, Ray ! 
+
+
+===
+title:AltRay2
+tags:
+---
+
+Naya:Oui alors, lui non plus il n’est pas très ouvert a la discussion, je préfère encore l’Umibozu 
+
+Sebastian:Je sais je sais, disons qu’il a sa manière de communiquer, dis lui que tu viens de la part de Sebastien et appelle le par son prénom, Ray ! 
+
+===

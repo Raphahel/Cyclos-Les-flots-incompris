@@ -1,0 +1,98 @@
+﻿title: VieuxMarin
+tags:
+---
+<<AddEvenement SiVaincuUmibozu>>
+<<AddEvenement DejaCroiseUmibozu>>
+<<AddEvenement DejaCroiseSebastian>>
+
+<<ValideEvenement SiVaincuUmibozu>>
+<<if GetEventState("SiVaincuUmibozu")>>
+
+Naya:Ray ! Ça a marché ! Il n’a pas coulé mon bateau 
+
+Naya:C’est une avancée énorme ! Cela signifie que la communication est possible, ou en tout cas que celui-ci ne répète pas simplement juste une phrase dans notre langue ! 
+
+Ray:Ravi de t’avoir aidée 
+
+Naya:Laissez-moi vous payer un verre pour vous remercier et fêter ça ! 
+
+Ray:Excellente idée, c’est Sébastien qui t'envoie me payer ce verre c’est ça ? 
+
+Naya:Bien vu…
+
+Ray:C’est pas la première fois qu’il fait ça ! Il aime pas quitter les eaux, j’ai du mal a la comprendre après son aventure avec l’Umibozu, mais il doit apprécier sa solitude
+
+Naya:Vous ne parlez pas à grand monde non plus…
+
+Ray:Que veux-tu, je préfère le mal de terre au mal de mer ! Être seul parmi les autre plutôt que parmi ce qui nous dépasse
+
+<i>Un verre plus tard</i>
+
+Naya:Dites moi, l'Umibozu vous a aussi demandé votre but en tant que marin ?
+
+Ray:Ouaip.
+
+Naya:Et vous avez répondu quoi ?
+
+Ray:Je n'ai pas vraiment su, je suppose que j'étais juste en quête de tranquilité.
+Ray:Avant j'aimais me perdre au millieu des eaux pour fuir mes problèmes, puis après ça, j'ai voulu retrouver la complexité de la vie.
+
+
+<<elseif GetEventState("DejaCroiseSebastian")>>
+
+Naya:Bonjour… Ray c’est ça ? 
+
+Ray:M’appelle pas comme ça ! Comment tu connais ce nom ?? 
+
+Naya:Ah Pardon… Quelqu’un m’a dit de vous appeler Ray et…
+
+Ray:Qui ça ?? Sebastien ? Je déteste ce surnom ! 
+
+Naya:Oui, Sebastien ! Je l’ai croisé au milieu de l’océan et par hasard on a parlé de vous et… 
+
+Ray:Ce vieux Kraken ! Quand il vient pas m'embêter avec ce surnom, il envoie les autres me tourmenter avec ! Bravo ! Je devrais te donner son nom de famille, comme ça t’iras l'embêter avec ça.
+
+Naya:Vous connaissez bien Sebastien ? 
+
+Ray:Ouaip, il me paye un verre a chaque fois qu’il passe dans le coin ! Je dois bien avouer que ça me soulage a chaque fois que je constate qu’il est encore en vie ! 
+
+Naya:Oui… J’ai entendu dire que vous avez une histoire commune à propos d’un monstre marin… 
+
+Ray:Crois moi on a pas la même histoire, l’un s’est fait brutaliser comme un novice et a perdu son bateau, l’autre, il a vaincu la vague démoniaque 
+
+Naya:Pour tout t’avouer c’est moins héroïque que ça en a l’air, il est simplement apparu devant moi au beau milieu de la tempete. Tout avait soudainement l’air calme au milieu de ce chaos, il a laissé planer un silence et m’a demandé “Suis-je terrifiant ?”
+Et vous avez répondu quoi ? 
+
+Ray:Non 
+
+Naya:Non ?
+
+Ray:Non
+
+Naya:C’est tout ? Il vous a laissé partir ? 
+
+Ray:Ouaip, tu sais quoi, après ça j’ai pris ma retraite, mais je passe pas un jour sans y repenser… 
+Ray:J’aurais bien aimé que ça m’arrive avant, ça m’a fait réfléchir et maintenant je ne vois plus les monstres pareil. Peut être qu’il faut juste prendre le temps de leur parler et ne pas se laisser submerger par nos émotions ?
+Ray:Enfin bref, tu sais quoi faire si tu le croise ! Tu dis “non” ! Tu ne le trouve pas terrifiant
+
+Naya:Mais… j’ai vraiment peur de lui moi !
+
+Ray:Qu’est ce que tu crois ? Moi aussi j’étais terrifié, j’ai juste menti, je me suis mis a sa place et je me suis demandé quelle réponse il pouvait bien attendre.
+
+
+<<else>>
+
+Naya:Bonjour ?
+
+Vieux Marin:Qu’est ce que tu veux ? T’es un pirate ou un truc comme ça ? Tu veux de l’argent ? 
+
+Naya:Heu, non ? Je suis chercheuse ! 
+
+Vieux Marin:Oh… et ça change quoi ? Tu viens quand même m'embêter non ? 
+
+Naya:J’ai besoin d’informations au sujet des monstres… 
+
+Vieux Marin:Encore un fan qui veut que je lui en parle hein ? J’aime pas déballer ma vie ! Fous moi la paix, j’ai pas pris ma retraite pour rien ! 
+
+<<endif>>
+===
