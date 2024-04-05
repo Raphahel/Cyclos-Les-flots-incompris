@@ -10,9 +10,7 @@ public class GestionnaireVagues : MonoBehaviour
     public static GestionnaireVagues instance { get; private set;  }
     private ShaderValue ValeursCibles = new ShaderValue();
 
-    private bool changeValeur = false;
     private float actualTime;
-    private const float PI = 3.14159265f;
 
     [SerializeField]
     private Renderer WaveShader;
@@ -123,17 +121,17 @@ public class GestionnaireVagues : MonoBehaviour
     //change les valeur de façon linéaire entre les nouvelles valeurs et les valleurs actuelles.
     private void lerpShader(ShaderValue newValue)
     {
-        WaveSteepness = Mathf.Lerp(WaveSteepness, newValue.WaveSteepness, 0.1f * Time.fixedDeltaTime);
-        WaveLength = Mathf.Lerp(WaveLength, newValue.WaveLength, 0.1f * Time.fixedDeltaTime);
-        WaveDirection = Vector3.Lerp(WaveDirection, newValue.WaveDirection, 0.1f * Time.fixedDeltaTime);
+        WaveSteepness = Mathf.Lerp(WaveSteepness, newValue.WaveSteepness, 1f * Time.fixedDeltaTime);
+        WaveLength = Mathf.Lerp(WaveLength, newValue.WaveLength, 1f * Time.fixedDeltaTime);
+        WaveDirection = Vector3.Lerp(WaveDirection, newValue.WaveDirection, 1f * Time.fixedDeltaTime);
 
-        WaveSteepness2 = Mathf.Lerp(WaveSteepness2, newValue.WaveSteepness2, 0.1f * Time.fixedDeltaTime);
-        WaveLength2 = Mathf.Lerp(WaveLength2, newValue.WaveLength2, 0.1f * Time.fixedDeltaTime);
-        WaveDirection2 = Vector3.Lerp(WaveDirection2, newValue.WaveDirection2, 0.1f * Time.fixedDeltaTime);
+        WaveSteepness2 = Mathf.Lerp(WaveSteepness2, newValue.WaveSteepness2, 1f * Time.fixedDeltaTime);
+        WaveLength2 = Mathf.Lerp(WaveLength2, newValue.WaveLength2, 1f * Time.fixedDeltaTime);
+        WaveDirection2 = Vector3.Lerp(WaveDirection2, newValue.WaveDirection2, 1f * Time.fixedDeltaTime);
 
-        WaveSteepness3 = Mathf.Lerp(WaveSteepness3, newValue.WaveSteepness3, 0.1f * Time.fixedDeltaTime);
-        WaveLength3 = Mathf.Lerp(WaveLength3, newValue.WaveLength3, 0.1f * Time.fixedDeltaTime);
-        WaveDirection3 = Vector3.Lerp(WaveDirection3, newValue.WaveDirection3, 0.1f * Time.fixedDeltaTime);
+        WaveSteepness3 = Mathf.Lerp(WaveSteepness3, newValue.WaveSteepness3, 1f * Time.fixedDeltaTime);
+        WaveLength3 = Mathf.Lerp(WaveLength3, newValue.WaveLength3, 1f * Time.fixedDeltaTime);
+        WaveDirection3 = Vector3.Lerp(WaveDirection3, newValue.WaveDirection3, 1f * Time.fixedDeltaTime);
 
         WaveShader.sharedMaterial.SetFloat("_WaveSteepness", WaveSteepness);
         WaveShader.sharedMaterial.SetFloat("_WaveLength", WaveLength);

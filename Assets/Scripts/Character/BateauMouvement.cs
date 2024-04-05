@@ -46,12 +46,14 @@ public class BateauMouvement : MonoBehaviour
     private const int DOMMAGEFORT = 40;
 
     //Constante son et pitch du Moteur
-    private const float VOLUMEMAX = 1f;
+    private const float VOLUMEMAX = 0.5f;
     private const float VOLUMEMIN = 0f;
     private float volume = 0f;
+    private const float VOLUMEMAXVAGUE = 0.6f;
+    private const float VOLUMEMINVAGUE = 0.1f;
     private float volumeVague = 0f;
-    private const float PITCHMAX = 1.2f;
-    private const float PITCHMIN = 0.8f;
+    private const float PITCHMAX = 0.9f;
+    private const float PITCHMIN = 0.4f;
     private float pitch = 0f;
 
     //Variables uniquement utilisé pour calculs
@@ -182,13 +184,13 @@ public class BateauMouvement : MonoBehaviour
         audioMoteur.pitch = pitch;
 
         //Changement du son des vagues selon la vélocité du joueur
-        if (rb.velocity.x <= 3)
+        if (Mathf.Abs(Vector3.Normalize(rb.velocity).x) >= 0.1f || Mathf.Abs(Vector3.Normalize(rb.velocity).z) >= 0.1f)
         {
-            volumeVague = Mathf.Lerp(volumeVague, VOLUMEMAX, 1f * Time.fixedDeltaTime / 2);
+            volumeVague = Mathf.Lerp(volumeVague, VOLUMEMAXVAGUE, 0.5f * Time.fixedDeltaTime / 2);
         }
         else
         {
-            volumeVague = Mathf.Lerp(volumeVague, VOLUMEMIN, 1f * Time.fixedDeltaTime);
+            volumeVague = Mathf.Lerp(volumeVague, VOLUMEMINVAGUE, 1f * Time.fixedDeltaTime);
         }
         audioVague.volume = volumeVague;
 

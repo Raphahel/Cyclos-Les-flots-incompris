@@ -26,9 +26,10 @@ public class PlayerMovement : MonoBehaviour
     [SerializeField]
     private float vitesse;
 
-    [Header("Composant")]
-    [SerializeField]
+
     private Rigidbody2D rb;
+    private Animator animator;
+    private SpriteRenderer sprite;
 
     private Vector2 ordreMouvemement = new Vector2 (0, 0);
     bool wantJump = false;
@@ -39,6 +40,10 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
+        rb = gameObject.GetComponent<Rigidbody2D>();
+        animator = gameObject.GetComponent<Animator>();
+        sprite = gameObject.GetComponent<SpriteRenderer>();
+
         inputMap = new Controles();
         inputMap.Enable();
         Subscribe();
@@ -78,6 +83,20 @@ public class PlayerMovement : MonoBehaviour
         if (ordreMouvemement != Vector2.zero)
         {
             transform.Translate (ordreMouvemement * vitesse * Time.deltaTime);
+            if(ordreMouvemement.x == 1)
+            {
+                animator.Play("WalkCycle");
+                sprite.flipX = true;
+            }
+            else
+            {
+                animator.Play("WalkCycle");
+                sprite.flipX = false;
+            }
+        }
+        else
+        {
+            animator.Play("Idle");
         }
 
 
