@@ -23,7 +23,7 @@ public class EmbarquerInteraction : AbstractInteractable
     
     IEnumerator LoadWorld()
     {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scenes/TestMonde");
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene);
 
         while (!asyncLoad.isDone)
         {

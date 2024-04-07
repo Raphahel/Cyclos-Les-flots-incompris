@@ -13,7 +13,7 @@ public abstract class AbstractInteractable : MonoBehaviour
     protected TextMeshProUGUI textMesh;
 
 
-    private Collider2D trigger;
+    private Collider trigger;
     protected bool isInterating = false;
     protected bool canInteract = false;
     private Controles inputMap;
@@ -21,7 +21,7 @@ public abstract class AbstractInteractable : MonoBehaviour
 
     protected void Start()
     {
-        trigger = gameObject.GetComponent<Collider2D>();
+        trigger = gameObject.GetComponent<Collider>();
         inputMap = new Controles();
         inputMap.Enable();
         Subscribe();

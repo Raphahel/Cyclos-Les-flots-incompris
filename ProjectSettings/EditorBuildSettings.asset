@@ -11,13 +11,16 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Ile_1_Asupprimer.unity
     guid: dee7df97d89290d4381beaec1d76aa6d
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Ile_2D.unity
     guid: 80f33ab5b52a05d4eb33e8c7f2e3fc35
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestMonde.unity
     guid: 2675e7cd2dffc3e4892ec047ef143d6b
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/test_map_2.unity
     guid: f13e3220b7d42f146a7b5b81a6807838
+  - enabled: 1
+    path: Assets/Scenes/proto_LD.unity
+    guid: feb45b042e01d6844a563e0dc4f9962d
   m_configObjects: {}
