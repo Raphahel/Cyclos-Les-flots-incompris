@@ -20,7 +20,7 @@ public class DialogueInteraction : AbstractInteractable
 
     protected override void Interaction(InputAction.CallbackContext context)
     {
-        if (!isInterating)
+        if (!isInterating && canInteract)
         {
             dialogue.onDialogueComplete.AddListener(EndDialogue);
             HidePrompt();

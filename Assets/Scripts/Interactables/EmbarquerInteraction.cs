@@ -1,19 +1,34 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Drawing;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class EmbarquerInteraction : AbstractInteractable
 {
 
     [SerializeField]
     private Image fadeToBlack;
+    [SerializeField]
+    private string targetScene;
     
     protected override void Interaction(InputAction.CallbackContext context)
     {
-        
+        if (canInteract)
+        {
+            StartCoroutine(LoadWorld());
+        }
     }
     
+    IEnumerator LoadWorld()
+    {
+        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync("Scenes/TestMonde");
+
+        while (!asyncLoad.isDone)
+        {
+            yield return null;
+        }
+    }
 
 }

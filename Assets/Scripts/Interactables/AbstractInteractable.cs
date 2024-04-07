@@ -15,6 +15,7 @@ public abstract class AbstractInteractable : MonoBehaviour
 
     private Collider2D trigger;
     protected bool isInterating = false;
+    protected bool canInteract = false;
     private Controles inputMap;
     protected PlayerMovement player;
 
@@ -34,6 +35,7 @@ public abstract class AbstractInteractable : MonoBehaviour
         { 
             textMesh.enabled = true;
             player = collision.gameObject.GetComponent<PlayerMovement>();
+            canInteract = true;
         }
     }
 
@@ -42,6 +44,7 @@ public abstract class AbstractInteractable : MonoBehaviour
         if (collision.CompareTag("Player"))
         {
             textMesh.enabled = false;
+            canInteract = false;
         }
     }
 
