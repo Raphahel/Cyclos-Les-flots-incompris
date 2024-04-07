@@ -29,7 +29,7 @@ public class Ile : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             cadreNom.enabled = true;
-            cadreNom.text = nom;
+            cadreNom.text = nom + "\n" + "Appuyez sur E pour amarrer.";
             dockingEnabled = true;
         }
     }

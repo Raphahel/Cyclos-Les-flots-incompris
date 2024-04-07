@@ -5,20 +5,15 @@ using UnityEngine.AI;
 
 public class UmibozuSpawnBehavior : MonoBehaviour
 {
-    private SphereCollider trigger;
-    private Camera mainCamera;
+    [SerializeField] private BoxCollider trigger;
+    [SerializeField] private Camera mainCamera;
     public GameObject Umibozu;
-
-    private void Start()
-    {
-        trigger = GetComponent<SphereCollider>();
-        mainCamera = FindObjectOfType<Camera>();
-    }
     
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
+            Debug.Log("ouga bouga");
             Vector3 spawnPosition = getSpawnPosition();
             GameObject umibozu = Instantiate(Umibozu);
             umibozu.transform.position = spawnPosition; 
@@ -30,7 +25,7 @@ public class UmibozuSpawnBehavior : MonoBehaviour
         while(true)
         {
             Rect r = mainCamera.rect;
-            Vector3 spawnPosition = RandomNavSphere(transform.position, trigger.radius, -1);
+            Vector3 spawnPosition = RandomNavSphere(transform.position, trigger.size.x, -1);
             if (!r.Contains(spawnPosition))
             {
                 return spawnPosition;
