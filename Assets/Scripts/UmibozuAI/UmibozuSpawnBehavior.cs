@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 
@@ -7,7 +8,8 @@ public class UmibozuSpawnBehavior : MonoBehaviour
 {
     [SerializeField] private BoxCollider trigger;
     [SerializeField] private Camera mainCamera;
-    public GameObject Umibozu;
+    public GameObject UmibozuPrefab;
+    private GameObject umibozuInst = null;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -15,8 +17,22 @@ public class UmibozuSpawnBehavior : MonoBehaviour
         {
             Debug.Log("ouga bouga");
             Vector3 spawnPosition = getSpawnPosition();
-            GameObject umibozu = Instantiate(Umibozu);
-            umibozu.transform.position = spawnPosition; 
+            if(umibozuInst == null)
+            {
+                umibozuInst = Instantiate(UmibozuPrefab);
+                umibozuInst.transform.position = spawnPosition;
+            }
+            GestionnaireVagues.instance.SetVague("tempete");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(umibozuInst);
+            umibozuInst = null;
+            GestionnaireVagues.instance.SetVague("calme");
         }
     }
 

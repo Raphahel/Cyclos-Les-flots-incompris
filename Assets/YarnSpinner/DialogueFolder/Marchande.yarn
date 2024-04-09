@@ -5,7 +5,6 @@ tags:
 <<AddEvenement DejaCroiseUmibozu>>
 <<AddEvenement DejaPartie>>
 
-<<ValideEvenement DejaCroiseUmibozu>>
 <<if GetEventState("SiVaincuUmibozu")>>
 
 Naya:Devines quoi… J’ai parlé a l’Umibozu ! 

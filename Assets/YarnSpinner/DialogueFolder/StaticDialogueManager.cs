@@ -21,7 +21,7 @@ public class StaticDialogueManager : MonoBehaviour
         else if (instance != this)
         {
             Debug.Log("Instance already exists.");
-            Destroy(this);
+            Destroy(gameObject);
         }
         DontDestroyOnLoad(this);
     }
