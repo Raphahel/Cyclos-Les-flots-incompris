@@ -34,7 +34,7 @@ public class TaskWander : Node
             wanderTimer = 0f;
             wanderTime = Random.Range(1f, 10f);
         }*/
-        if (Vector2.Distance(agent.transform.position, destination) < 4f)
+        if (Vector2.Distance(agent.transform.position, destination) < 5f)
         {
             destination = RandomNavSphere(agent.transform.position, wanderRadius, -1);
             destination.y = agent.transform.position.y;

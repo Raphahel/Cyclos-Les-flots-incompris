@@ -6,7 +6,7 @@ using UnityEngine.AI;
 
 public class UmibozuBT : AITree
 {
-    public float wanderRadius;
+    public float fovRange;
     public static NavMeshAgent agent;
 
     private void Awake()
@@ -16,7 +16,7 @@ public class UmibozuBT : AITree
 
     protected override Node SetupTree()
     {
-        Node root = new TaskWander(agent, wanderRadius);
+        Node root = new Sequence(new List<Node>() { new CheckBoat(transform, fovRange), new TaskGoToBoat(transform, agent) });
         return root;
     }
 }
