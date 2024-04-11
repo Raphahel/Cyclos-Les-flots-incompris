@@ -47,8 +47,14 @@ public class Ile : MonoBehaviour
     {
         if (dockingEnabled)
         {
-            SceneManager.LoadScene(nom);
+            Debug.Log("OUI J'AI ENTENDU");
+            StartCoroutine(UIController.instance.StartFadeToScene("Ile_2D"));
         }
+    }
+
+    private void OnDestroy()
+    {
+        inputMap.Interact.Interact.performed -= changeScene;
     }
 
     private void Subscribe()

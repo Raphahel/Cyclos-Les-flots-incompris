@@ -2,11 +2,27 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
     [SerializeField] public Image blackOutBox;
+
+    public static UIController instance { get; private set; }
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+        }
+        else if (instance != this)
+        {
+            Debug.Log("Instance already exists.");
+            Destroy(this);
+        }
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -18,6 +34,15 @@ public class UIController : MonoBehaviour
     public void StartFade(bool fadeToBlack = true, int fadeSpeed = 1)
     {
         StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));
+    }
+
+    public IEnumerator StartFadeToScene(string scene, bool fadeToBlack = true, int fadeSpeed = 1)
+    {
+        Debug.Log("JE CHARGE CONNARD");
+        AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
+        loading.allowSceneActivation = false;
+        yield return StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));
+        loading.allowSceneActivation = true;
     }
 
     public IEnumerator FadeToBlack(bool fadeToBlack = true, int fadeSpeed = 1)

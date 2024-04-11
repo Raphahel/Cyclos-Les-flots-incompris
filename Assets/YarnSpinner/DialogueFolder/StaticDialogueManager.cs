@@ -49,7 +49,7 @@ public class StaticDialogueManager : MonoBehaviour
         nameEvent = nameEvent.ToLower();
         if (dictEvenement.ContainsKey(nameEvent))
         {
-            Debug.Log("WARNING : trying to add an already existing event :" + nameEvent);
+            Debug.Log("WARNING : trying to add an already existing event : " + nameEvent);
             //Do Nothing (made to avoid create duplicate)
         }
         else

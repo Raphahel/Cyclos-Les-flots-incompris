@@ -17,10 +17,12 @@ public class EmbarquerInteraction : AbstractInteractable
     {
         if (canInteract)
         {
-            StartCoroutine(LoadWorld());
+            StartCoroutine(UIController.instance.StartFadeToScene("proto_LD"));
         }
     }
     
+
+    //Obsolete
     IEnumerator LoadWorld()
     {
         AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(targetScene);
