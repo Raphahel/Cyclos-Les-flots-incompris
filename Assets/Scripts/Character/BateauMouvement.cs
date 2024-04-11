@@ -1,8 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.ProBuilder.Shapes;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class BateauMouvement : MonoBehaviour
 {
@@ -25,8 +28,7 @@ public class BateauMouvement : MonoBehaviour
     private float batterieRecharge;
     [SerializeField]
     private float BatteriePuissance;
-    [SerializeField]
-    private bool isCharging = false;
+    public bool isCharging = false;
     [SerializeField]
     private float BatterieDrain;
     [SerializeField]
@@ -39,6 +41,11 @@ public class BateauMouvement : MonoBehaviour
     private AudioSource audioMoteur;
     [SerializeField]
     private AudioSource audioVague;
+    [SerializeField]
+    private Slider BatterieSlider;
+    [SerializeField]
+    private Slider VieSlider;
+
 
     //Constante de dommage
     private const int DOMMAGEFAIBLE = 15;
@@ -74,6 +81,8 @@ public class BateauMouvement : MonoBehaviour
 
     private float facteurImmertion = 1;
 
+    public bool inTempete = false;
+    private float timer = 0f;
 
     void Awake()
     {
@@ -86,6 +95,29 @@ public class BateauMouvement : MonoBehaviour
         Subscribe();
     }
 
+    private void Update()
+    {
+        VieSlider.value = vie;
+        BatterieSlider.value = BatteriePuissance;
+
+        //Dommmages dus à la tempête
+        if (inTempete && timer >= 2f)
+        {
+            vie -= 1;
+            timer = 0f;
+        }
+        else if (inTempete)
+        {
+            timer += Time.deltaTime;
+            BatterieDrain = 0.8f;
+        }
+        else
+        {
+            timer = 0f;
+            BatterieDrain = 0.4f;
+        }
+    }
+
     void FixedUpdate()
     {
         //Pour Debug uniquement à retirer pour les build
@@ -93,6 +125,8 @@ public class BateauMouvement : MonoBehaviour
         //sqrVitesseMax = vitesseMax * vitesseMax;
         SaveRotation = maxRotationSpeed;
         Mouvement();
+        //Debug.Log(transform.eulerAngles.z);
+
     }
 
 
@@ -225,8 +259,14 @@ public class BateauMouvement : MonoBehaviour
         Mathf.Max(0, vie);
         if(vie <= 0)
         {
-            Debug.Log("Le DC");
+            Death();
         }
+    }
+
+    //Fonction Mort
+    private void Death()
+    {
+        SceneManager.LoadScene("Ile_2D");
     }
 
 

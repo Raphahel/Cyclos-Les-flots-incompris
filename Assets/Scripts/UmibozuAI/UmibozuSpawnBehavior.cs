@@ -10,18 +10,39 @@ public class UmibozuSpawnBehavior : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     public GameObject UmibozuPrefab;
     private GameObject umibozuInst = null;
-    
+    private float timer = 0f;
+    private bool timerGoing = false;
+
+    private void Update()
+    {
+        if (timerGoing)
+        {
+            timer += Time.deltaTime;
+
+            if(timer >= 10f)
+            {
+                Vector3 spawnPosition = getSpawnPosition();
+                if (umibozuInst == null)
+                {
+                    umibozuInst = Instantiate(UmibozuPrefab);
+                    umibozuInst.transform.position = spawnPosition;
+                }
+            }
+
+        }
+        else
+        {
+            timer = 0f;
+        }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("ouga bouga");
-            Vector3 spawnPosition = getSpawnPosition();
-            if(umibozuInst == null)
-            {
-                umibozuInst = Instantiate(UmibozuPrefab);
-                umibozuInst.transform.position = spawnPosition;
-            }
+            timerGoing = true;
+            other.gameObject.GetComponent<BateauMouvement>().inTempete = true;
+            
             GestionnaireVagues.instance.SetVague("tempete");
         }
     }
@@ -30,8 +51,15 @@ public class UmibozuSpawnBehavior : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Destroy(umibozuInst);
-            umibozuInst = null;
+            other.gameObject.GetComponent<BateauMouvement>().inTempete = false;
+            timerGoing = false;
+
+            if(umibozuInst != null)
+            {
+                Destroy(umibozuInst);
+                umibozuInst = null;
+            }
+
             GestionnaireVagues.instance.SetVague("calme");
         }
     }
