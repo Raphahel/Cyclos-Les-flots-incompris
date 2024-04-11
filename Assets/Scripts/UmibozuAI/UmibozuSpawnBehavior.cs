@@ -10,6 +10,7 @@ public class UmibozuSpawnBehavior : MonoBehaviour
     [SerializeField] private Camera mainCamera;
     public GameObject UmibozuPrefab;
     private GameObject umibozuInst = null;
+    float spawnSpeed = 1f;
     
     private void OnTriggerEnter(Collider other)
     {
@@ -17,10 +18,12 @@ public class UmibozuSpawnBehavior : MonoBehaviour
         {
             Debug.Log("ouga bouga");
             Vector3 spawnPosition = getSpawnPosition();
+            spawnPosition.y = -100f;
             if(umibozuInst == null)
             {
                 umibozuInst = Instantiate(UmibozuPrefab);
                 umibozuInst.transform.position = spawnPosition;
+                //StartCoroutine(SpawnAnimation());
             }
             GestionnaireVagues.instance.SetVague("tempete");
         }
@@ -36,12 +39,22 @@ public class UmibozuSpawnBehavior : MonoBehaviour
         }
     }
 
+    public IEnumerator SpawnAnimation()
+    {
+        while (transform.position.y < 0)
+        {
+            transform.position += Vector3.up * spawnSpeed * Time.deltaTime;
+            yield return null;
+        }
+    }
+
     public Vector3 getSpawnPosition()
     {
         while(true)
         {
             Rect r = mainCamera.rect;
             Vector3 spawnPosition = RandomNavSphere(transform.position, trigger.size.x, -1);
+            //spawnPosition.y = -100f;
             if (!r.Contains(spawnPosition))
             {
                 return spawnPosition;

@@ -2979,7 +2979,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 701fa587c8c686146a7b6bddef45162b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fovRange: 100
+  fovRange: 200
 --- !u!195 &4210009563836034656
 NavMeshAgent:
   m_ObjectHideFlags: 0
