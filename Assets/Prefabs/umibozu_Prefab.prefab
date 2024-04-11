@@ -2663,6 +2663,8 @@ GameObject:
   m_Component:
   - component: {fileID: 3212456872773880276}
   - component: {fileID: 3880409185428044126}
+  - component: {fileID: 5737442441093697531}
+  - component: {fileID: 4210009563836034656}
   m_Layer: 0
   m_Name: umibozu_Prefab
   m_TagString: Untagged
@@ -2711,3 +2713,38 @@ CapsuleCollider:
   m_Height: 173.54977
   m_Direction: 1
   m_Center: {x: -0.3461914, y: 0, z: -6.011795}
+--- !u!114 &5737442441093697531
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175389897720345879}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 701fa587c8c686146a7b6bddef45162b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fovRange: 200
+--- !u!195 &4210009563836034656
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9175389897720345879}
+  m_Enabled: 1
+  m_AgentTypeID: -334000983
+  m_Radius: 0.5
+  m_Speed: 3.5
+  m_Acceleration: 8
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4

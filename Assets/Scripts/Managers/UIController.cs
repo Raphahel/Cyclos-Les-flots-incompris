@@ -2,21 +2,48 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.UIElements;
+using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
-    public static UIController instance;
+    [SerializeField] public Image blackOutBox;
 
     // Start is called before the first frame update
     void Start()
     {
-        if (instance != null & instance != this)
+        blackOutBox = GetComponentInChildren<Image>();
+        StartCoroutine(FadeToBlack(false));
+    }
+
+    public void StartFade(bool fadeToBlack = true, int fadeSpeed = 1)
+    {
+        StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));
+    }
+
+    public IEnumerator FadeToBlack(bool fadeToBlack = true, int fadeSpeed = 1)
+    {
+        Color objectColor = blackOutBox.color;
+        float fadeAmount;
+
+        if (fadeToBlack)
         {
-            Destroy(gameObject);
+            while (blackOutBox.color.a < 1)
+            {
+                fadeAmount = objectColor.a + (fadeSpeed * Time.deltaTime);
+
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                blackOutBox.color = objectColor;
+                yield return null;
+            }
         } else
         {
-            instance = this;
+            while (blackOutBox.color.a > 0)
+            {
+                fadeAmount = objectColor.a - (fadeSpeed * Time.deltaTime);
+                objectColor = new Color(objectColor.r, objectColor.g, objectColor.b, fadeAmount);
+                blackOutBox.color = objectColor;
+                yield return null;
+            }
         }
     }
 }
