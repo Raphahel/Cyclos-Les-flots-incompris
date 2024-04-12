@@ -27,13 +27,18 @@ public class UIController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        blackOutBox = GetComponentInChildren<Image>();
+        //blackOutBox = GetComponentInChildren<Image>();
         StartCoroutine(FadeToBlack(false));
     }
 
     public void StartFade(bool fadeToBlack = true, int fadeSpeed = 1)
     {
         StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));
+    }
+
+    public void FadeToScene(string scene)
+    {
+        StartCoroutine(StartFadeToScene(scene));
     }
 
     public IEnumerator StartFadeToScene(string scene, bool fadeToBlack = true, int fadeSpeed = 1)
@@ -70,5 +75,10 @@ public class UIController : MonoBehaviour
                 yield return null;
             }
         }
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
     }
 }
