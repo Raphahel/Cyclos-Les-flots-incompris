@@ -17,7 +17,7 @@ public class TaskGoToBoat : Node
     public override NodeState Evaluate()
     {
         Transform boat = (Transform)GetData("boat");
-        if (Vector3.Distance(_transform.position, boat.position) > 0.01f)
+        if (Vector3.Distance(_transform.position, boat.position) > 10f)
         {
             _agent.SetDestination(boat.position);
         }
