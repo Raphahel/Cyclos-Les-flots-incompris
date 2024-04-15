@@ -4,15 +4,34 @@ using UnityEngine;
 
 public class DetecteurRenversement : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField]
+    private BateauMouvement boat;
+
+    private GestionnaireVagues gVague;
+    private float timerRenv = 0.5f;
+    private bool loading = false;
+
+    private void Awake()
     {
-        
+        gVague = GestionnaireVagues.instance;
     }
 
-    // Update is called once per frame
-    void Update()
+    private void FixedUpdate()
     {
-        
+        float vague = GestionnaireVagues.instance.HauteurVague(transform.position).y;
+        if(transform.position.y < vague)
+        {
+            timerRenv -= Time.fixedDeltaTime;
+
+            if(timerRenv <= 0 && loading != true)
+            {
+                boat.Death();
+                loading = true;
+            }
+        }
+        else
+        {
+            timerRenv = 0.5f;
+        }
     }
 }

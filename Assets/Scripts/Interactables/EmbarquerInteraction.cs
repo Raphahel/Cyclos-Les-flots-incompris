@@ -9,15 +9,13 @@ public class EmbarquerInteraction : AbstractInteractable
 {
 
     [SerializeField]
-    private Image fadeToBlack;
-    [SerializeField]
     private string targetScene;
     
     protected override void Interaction(InputAction.CallbackContext context)
     {
         if (canInteract)
         {
-            StartCoroutine(UIController.instance.StartFadeToScene("proto_LD"));
+            StartCoroutine(UIController.instance.StartFadeToScene(targetScene));
         }
     }
     

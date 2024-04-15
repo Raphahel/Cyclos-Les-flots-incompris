@@ -38,7 +38,6 @@ public class UIController : MonoBehaviour
 
     public IEnumerator StartFadeToScene(string scene, bool fadeToBlack = true, int fadeSpeed = 1)
     {
-        Debug.Log("JE CHARGE CONNARD");
         AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
         loading.allowSceneActivation = false;
         yield return StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));
