@@ -113,8 +113,18 @@ public class BoidManager : MonoBehaviour
         {
             Graphics.DrawMeshInstanced(mesh, 0, material, fishTRS);
         }
-
     }
+
+#if false
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.blue;
+        for (int i = 0; i < fishTRS.Count; i++)
+        {
+            Gizmos.DrawSphere(fishTRS[i].GetPosition(), 5f);
+        }
+    } 
+#endif
 
     public Vector3 RandomSpawnPoint(float radius, float yoffset, Vector3 origin = new Vector3())
     {
