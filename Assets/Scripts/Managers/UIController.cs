@@ -38,14 +38,12 @@ public class UIController : MonoBehaviour
     }
 
 
-    [YarnCommand("FadeToScene2D")]
     public void FadeToScene2D(string scene)
     {
         DayNightManager.StopTime();
         StartCoroutine(StartFadeToScene2D(scene));
     }
 
-    [YarnCommand("FadeToScene")]
     public void FadeToScene(string scene)
     { 
         StartCoroutine(StartFadeToScene(scene));

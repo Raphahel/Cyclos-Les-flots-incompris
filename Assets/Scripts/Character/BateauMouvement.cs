@@ -324,11 +324,34 @@ public class BateauMouvement : MonoBehaviour
         directionRotation = 0;
     }
 
-    private void Subscribe()
+    //Input and UI functions
+
+    public void HideUi()
+    {
+        BatterieSlider.gameObject.SetActive(false);
+        VieSlider.gameObject.SetActive(false);
+    }
+
+    public void ShowUi()
+    {
+        BatterieSlider.gameObject.SetActive(true);
+        VieSlider.gameObject.SetActive(true);
+    }
+
+
+    public void Subscribe()
     {
         inputMap.MovementBateau.Accelerer.performed += StartMove;
         inputMap.MovementBateau.Accelerer.canceled += StopMove;
         inputMap.MovementBateau.Tourner.performed += StartTourner;
         inputMap.MovementBateau.Tourner.canceled += StopTourner;
+    }
+
+    public void Unsubscribe()
+    {
+        inputMap.MovementBateau.Accelerer.performed -= StartMove;
+        inputMap.MovementBateau.Accelerer.canceled -= StopMove;
+        inputMap.MovementBateau.Tourner.performed -= StartTourner;
+        inputMap.MovementBateau.Tourner.canceled -= StopTourner;
     }
 }

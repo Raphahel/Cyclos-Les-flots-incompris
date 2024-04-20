@@ -17,9 +17,14 @@ public class TaskGoToBoat : Node
     public override NodeState Evaluate()
     {
         Transform boat = (Transform)GetData("boat");
-        if (Vector3.Distance(_transform.position, boat.position) > 10f)
+        if (Vector3.Distance(_transform.position, boat.position) > 35f)
         {
             _agent.SetDestination(boat.position);
+        }
+        else if(Vector3.Distance(_transform.position, boat.position) < 35f)
+        {
+            DialogueLauncher.LaunchDialogueFreeze("Umibozu");
+            _agent.SetDestination(_transform.position);
         }
 
         state = NodeState.RUNNING;
