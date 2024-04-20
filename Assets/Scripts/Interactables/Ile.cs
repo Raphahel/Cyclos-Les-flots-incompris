@@ -47,7 +47,7 @@ public class Ile : MonoBehaviour
     {
         if (dockingEnabled)
         {
-            StartCoroutine(UIController.instance.StartFadeToScene("Ile_2D"));
+            StartCoroutine(UIController.instance.StartFadeToScene2D("Ile_2D"));
         }
     }
 

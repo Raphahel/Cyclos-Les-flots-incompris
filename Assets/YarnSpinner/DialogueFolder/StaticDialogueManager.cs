@@ -24,6 +24,16 @@ public class StaticDialogueManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(this);
+
+        AddEvenement("Nuit");
+        if (DayNightManager.isNight)
+        {
+            ValideEvenement("Nuit");
+        }
+        else
+        {
+            FalseEvenement("Nuit");
+        }
     }
 
 
