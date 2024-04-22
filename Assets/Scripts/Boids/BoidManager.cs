@@ -4,13 +4,16 @@ using System.Threading.Tasks;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Jobs;
+using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class BoidManager : MonoBehaviour
 {
     [Header("Mesh")]
     [SerializeField]
     Mesh mesh;
+    //ALWAYS MAKE SURE the mesh is readable. If not open the mesh as a text file and change m_isReadable from 0 to 1
 
     [SerializeField]
     Material material;
@@ -69,16 +72,18 @@ public class BoidManager : MonoBehaviour
     
     private void Awake()
     {
-        float position = 0;
         fishTRS = new List<Matrix4x4>();
         fishVelocity = new List<Vector3>();
+
+        SerializedObject s = new SerializedObject(mesh);
+        s.FindProperty("m_IsReadable").boolValue = true;
+        //The mesh is supposed to be readable by default, but you can't be too sure I guess
 
         for (int i = 0; i < maxPopulation; i++)
         {
             Vector3 spawnPoint = RandomSpawnPoint(radius, positionY);
-            AddFish(spawnPoint, Quaternion.identity, 1f) ;
+            AddFish(spawnPoint, Quaternion.Euler(0, 0, 90), 100f) ;
             fishVelocity.Add(new Vector3(1, 0, 0));
-            position += 2f;
         }
         fish_cont = new NativeList<Matrix4x4>(1, Allocator.Persistent);
         fish_velocity = new NativeList<Vector3>(1, Allocator.Persistent);
@@ -121,7 +126,7 @@ public class BoidManager : MonoBehaviour
         Gizmos.color = Color.blue;
         for (int i = 0; i < fishTRS.Count; i++)
         {
-            Gizmos.DrawSphere(fishTRS[i].GetPosition(), 5f);
+            Gizmos.DrawMesh(mesh, 0, fishTRS[i].GetPosition(), Quaternion.identity, new Vector3(100, 100, 100));
         }
     } 
 #endif
@@ -296,6 +301,7 @@ public class BoidManager : MonoBehaviour
         {
             Matrix4x4 trs = fish_cont[i];
             Vector3 position = trs.GetPosition();
+            //Quaternion rotation = trs.rotation;
             Vector3 scale = trs.lossyScale;
             Vector3 oldVelocity = fish_velocity[i];
             Vector3 newVelocity = oldVelocity;
@@ -381,6 +387,7 @@ public class BoidManager : MonoBehaviour
             position += newVelocity * deltaTime;
 
             Quaternion rotation = Quaternion.LookRotation(newVelocity);
+            rotation *= Quaternion.Euler(0, -90, 90);
 
             fish_cont[i] = Matrix4x4.TRS(position, rotation, scale);
             fish_velocity[i] = newVelocity;
@@ -638,4 +645,6 @@ public class BoidManager : MonoBehaviour
             fish_velocity[i] = velocity;
         }       
     }
+
+    
 }
