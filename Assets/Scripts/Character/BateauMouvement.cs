@@ -1,9 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.SearchService;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.ProBuilder.Shapes;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
@@ -104,6 +102,10 @@ public class BateauMouvement : MonoBehaviour
         if (inTempete && timer >= 2f)
         {
             vie -= 1;
+            if(vie <= 0)
+            {
+                Death();
+            }
             timer = 0f;
         }
         else if (inTempete)
@@ -264,9 +266,9 @@ public class BateauMouvement : MonoBehaviour
     }
 
     //Fonction Mort
-    private void Death()
+    public void Death()
     {
-        SceneManager.LoadScene("Ile_2D");
+        StartCoroutine(UIController.instance.StartFadeToScene("Ile_2D"));
     }
 
 
@@ -322,11 +324,34 @@ public class BateauMouvement : MonoBehaviour
         directionRotation = 0;
     }
 
-    private void Subscribe()
+    //Input and UI functions
+
+    public void HideUi()
+    {
+        BatterieSlider.gameObject.SetActive(false);
+        VieSlider.gameObject.SetActive(false);
+    }
+
+    public void ShowUi()
+    {
+        BatterieSlider.gameObject.SetActive(true);
+        VieSlider.gameObject.SetActive(true);
+    }
+
+
+    public void Subscribe()
     {
         inputMap.MovementBateau.Accelerer.performed += StartMove;
         inputMap.MovementBateau.Accelerer.canceled += StopMove;
         inputMap.MovementBateau.Tourner.performed += StartTourner;
         inputMap.MovementBateau.Tourner.canceled += StopTourner;
+    }
+
+    public void Unsubscribe()
+    {
+        inputMap.MovementBateau.Accelerer.performed -= StartMove;
+        inputMap.MovementBateau.Accelerer.canceled -= StopMove;
+        inputMap.MovementBateau.Tourner.performed -= StartTourner;
+        inputMap.MovementBateau.Tourner.canceled -= StopTourner;
     }
 }

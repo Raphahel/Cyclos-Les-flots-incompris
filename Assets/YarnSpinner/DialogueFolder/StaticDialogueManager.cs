@@ -24,6 +24,16 @@ public class StaticDialogueManager : MonoBehaviour
             Destroy(gameObject);
         }
         DontDestroyOnLoad(this);
+
+        AddEvenement("Nuit");
+        if (DayNightManager.isNight)
+        {
+            ValideEvenement("Nuit");
+        }
+        else
+        {
+            FalseEvenement("Nuit");
+        }
     }
 
 
@@ -85,5 +95,17 @@ public class StaticDialogueManager : MonoBehaviour
         {
             dictEvenement.Add(nameEvent, true);
         }
+    }
+
+    [YarnCommand("ChangeScene2D")]
+    public static void ChangeScene2D(string scene)
+    {
+        UIController.instance.FadeToScene2D(scene);
+    }
+
+    [YarnCommand("ChangeScene")]
+    public static void ChangeScene(string scene)
+    {
+        UIController.instance.FadeToScene(scene);
     }
 }

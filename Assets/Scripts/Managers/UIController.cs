@@ -1,9 +1,9 @@
 using System.Collections;
-using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using Yarn.Unity;
 
 public class UIController : MonoBehaviour
 {
@@ -16,11 +16,12 @@ public class UIController : MonoBehaviour
         if (instance == null)
         {
             instance = this;
+            
         }
         else if (instance != this)
         {
             Debug.Log("Instance already exists.");
-            Destroy(this);
+            Destroy(gameObject);
         }
     }
 
@@ -36,14 +37,29 @@ public class UIController : MonoBehaviour
         StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));
     }
 
-    public void FadeToScene(string scene)
+
+    public void FadeToScene2D(string scene)
     {
+        DayNightManager.StopTime();
+        StartCoroutine(StartFadeToScene2D(scene));
+    }
+
+    public void FadeToScene(string scene)
+    { 
         StartCoroutine(StartFadeToScene(scene));
     }
 
     public IEnumerator StartFadeToScene(string scene, bool fadeToBlack = true, int fadeSpeed = 1)
     {
-        Debug.Log("JE CHARGE CONNARD");
+        AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
+        loading.allowSceneActivation = false;
+        yield return StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));
+        DayNightManager.StartTime();
+        loading.allowSceneActivation = true;
+    }
+
+    public IEnumerator StartFadeToScene2D(string scene, bool fadeToBlack = true, int fadeSpeed = 1)
+    {
         AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
         loading.allowSceneActivation = false;
         yield return StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));

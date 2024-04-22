@@ -5,6 +5,8 @@ tags:
 Umibozu:Suis-je terrifiant ? 
 ->Naya:Oui
 	Umibozu:GNAK Je te cool
+	<<ChangeScene2D Ile_2D>>
+	<<wait 5>>
 ->Naya:Non	
 	Umibozu:Te voilà alors prête à affronter les dangers de l'océan.
 	//Umibozu:Je suis un <i><b><color=\#ff00ff>Monstre</color></b></i>!
@@ -12,7 +14,4 @@ Umibozu:Suis-je terrifiant ?
 	Naya:Je suis chercheuse ! Je cherche a en apprendre plus sur les… êtres, comme vous ! Et sur notre monde.
 	Umibozu:Un jour de mer houleuse, un chercheur a subi les évagations de l’enfant. Il fut emmené dans une caverne au fin fond de ces flots. Souhaites-tu que je t’y conduise ? 
 	Naya:...Je suppose ?
-
-
-
 ===
