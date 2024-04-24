@@ -34,14 +34,15 @@ public class TaskWander : Node
             wanderTimer = 0f;
             wanderTime = Random.Range(1f, 10f);
         }*/
-        if (Vector2.Distance(agent.transform.position, destination) < 2f)
+        if (Vector2.Distance(agent.transform.position, destination) < 5f)
         {
             destination = RandomNavSphere(agent.transform.position, wanderRadius, -1);
-            
+            destination.y = agent.transform.position.y;
             //agent.SetDestination(destination);
         } else
         {
-            Debug.DrawLine(agent.transform.position, destination, Color.blue);
+            //Debug.Log(Vector2.Distance(agent.transform.position, destination));
+            Debug.DrawLine(agent.transform.position, destination, Color.green);
             //Debug.Log(Vector2.Distance(agent.transform.position, destination));
             //agent.transform.LookAt(new Vector3(destination.x, agent.transform.position.y, destination.z));*$
             Vector3 target = new Vector3(destination.x, agent.transform.position.y, destination.z);

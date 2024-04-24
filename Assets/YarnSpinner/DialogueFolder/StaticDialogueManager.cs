@@ -21,9 +21,19 @@ public class StaticDialogueManager : MonoBehaviour
         else if (instance != this)
         {
             Debug.Log("Instance already exists.");
-            Destroy(this);
+            Destroy(gameObject);
         }
         DontDestroyOnLoad(this);
+
+        AddEvenement("Nuit");
+        if (DayNightManager.isNight)
+        {
+            ValideEvenement("Nuit");
+        }
+        else
+        {
+            FalseEvenement("Nuit");
+        }
     }
 
 
@@ -49,7 +59,7 @@ public class StaticDialogueManager : MonoBehaviour
         nameEvent = nameEvent.ToLower();
         if (dictEvenement.ContainsKey(nameEvent))
         {
-            Debug.Log("WARNING : trying to add an already existing event :" + nameEvent);
+            Debug.Log("WARNING : trying to add an already existing event : " + nameEvent);
             //Do Nothing (made to avoid create duplicate)
         }
         else
@@ -85,5 +95,17 @@ public class StaticDialogueManager : MonoBehaviour
         {
             dictEvenement.Add(nameEvent, true);
         }
+    }
+
+    [YarnCommand("ChangeScene2D")]
+    public static void ChangeScene2D(string scene)
+    {
+        UIController.instance.FadeToScene2D(scene);
+    }
+
+    [YarnCommand("ChangeScene")]
+    public static void ChangeScene(string scene)
+    {
+        UIController.instance.FadeToScene(scene);
     }
 }

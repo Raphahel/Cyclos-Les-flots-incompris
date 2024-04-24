@@ -1,27 +1,66 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Security.Cryptography;
 using UnityEngine;
 using UnityEngine.AI;
 
 public class UmibozuSpawnBehavior : MonoBehaviour
 {
-    private SphereCollider trigger;
-    private Camera mainCamera;
-    public GameObject Umibozu;
+    [SerializeField] private BoxCollider trigger;
+    [SerializeField] private Camera mainCamera;
+    public GameObject UmibozuPrefab;
+    private GameObject umibozuInst = null;
+    private float timer = 0f;
+    private bool timerGoing = false;
 
-    private void Start()
+    private void Update()
     {
-        trigger = GetComponent<SphereCollider>();
-        mainCamera = FindObjectOfType<Camera>();
+        if (timerGoing)
+        {
+            timer += Time.deltaTime;
+
+            if(timer >= 10f)
+            {
+                Vector3 spawnPosition = getSpawnPosition();
+                if (umibozuInst == null)
+                {
+                    umibozuInst = Instantiate(UmibozuPrefab);
+                    umibozuInst.transform.position = spawnPosition;
+                }
+            }
+
+        }
+        else
+        {
+            timer = 0f;
+        }
     }
-    
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            Vector3 spawnPosition = getSpawnPosition();
-            GameObject umibozu = Instantiate(Umibozu);
-            umibozu.transform.position = spawnPosition; 
+            timerGoing = true;
+            other.gameObject.GetComponent<BateauMouvement>().inTempete = true;
+            
+            GestionnaireVagues.instance.SetVague("tempete");
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            other.gameObject.GetComponent<BateauMouvement>().inTempete = false;
+            timerGoing = false;
+
+            if(umibozuInst != null)
+            {
+                Destroy(umibozuInst);
+                umibozuInst = null;
+            }
+
+            GestionnaireVagues.instance.SetVague("calme");
         }
     }
 
@@ -30,7 +69,7 @@ public class UmibozuSpawnBehavior : MonoBehaviour
         while(true)
         {
             Rect r = mainCamera.rect;
-            Vector3 spawnPosition = RandomNavSphere(transform.position, trigger.radius, -1);
+            Vector3 spawnPosition = RandomNavSphere(transform.position, trigger.size.x, -1);
             if (!r.Contains(spawnPosition))
             {
                 return spawnPosition;

@@ -16,17 +16,13 @@ public class FollowBezierCurve : MonoBehaviour
     //private bool coroutineAllowed;
     [SerializeField] private float delay = 5f;
 
-    private float radius;
+    [SerializeField] private float radius = 250f;
 
     void Start()
 
     {
-        //routeToGo = 0;
         tParam = 0f;
-        //coroutineAllowed = true;
-        
         navMeshSurface = FindObjectOfType<NavMeshSurface>();
-        radius = 50f;
         StartCoroutine(GoByTheRoute());
     }
 
@@ -61,15 +57,6 @@ public class FollowBezierCurve : MonoBehaviour
         }
 
         tParam = 0;
-        /*routeToGo += 1;
-
-        if (routeToGo > routes.Length - 1)
-
-        {
-
-            routeToGo = 0;
-
-        }*/
         yield return new WaitForSeconds(delay);
         StartCoroutine(GoByTheRoute(p3));
     }
@@ -90,17 +77,7 @@ public class FollowBezierCurve : MonoBehaviour
         }
 
         tParam = 0;
-        /*routeToGo += 1;
-
-        if (routeToGo > routes.Length - 1)
-
-        {
-
-            routeToGo = 0;
-
-        }*/
-
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(delay);
         StartCoroutine(GoByTheRoute(p3));
     }
 

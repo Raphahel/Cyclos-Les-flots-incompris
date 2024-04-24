@@ -6,17 +6,22 @@ using UnityEngine.AI;
 
 public class UmibozuBT : AITree
 {
-    public float wanderRadius;
+    public float fovRange;
     public static NavMeshAgent agent;
+    private Transform rendererTransform;
 
     private void Awake()
     {
         agent = GetComponent<NavMeshAgent>();
+        rendererTransform = GetComponentInChildren<SkinnedMeshRenderer>().transform;
+        Vector3 position = rendererTransform.position;
+        position.y = -50;
+        rendererTransform.position = position;
     }
 
     protected override Node SetupTree()
     {
-        Node root = new TaskWander(agent, wanderRadius);
+        Node root = new Sequence(new List<Node>() {new TaskSpawnAnimation(rendererTransform), new CheckBoat(transform, fovRange), new TaskGoToBoat(transform, agent) });
         return root;
     }
 }

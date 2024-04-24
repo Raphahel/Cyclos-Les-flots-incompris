@@ -1,0 +1,9 @@
+﻿title: Embarquer
+tags:
+---
+Voulez-vous embarquer ?
+->Oui
+    <<FadeToScene Proto_LD>>
+->Non
+    Naya:Je ne suis pas encore prête.
+===
