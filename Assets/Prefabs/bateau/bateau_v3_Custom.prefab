@@ -1026,15 +1026,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vie: 100
   maxRotationSpeed: 4
-  acceleration: 20
+  acceleration: 24
   vitesseMax: 500
   batterieMax: 100
   batterieRecharge: 5
   BatteriePuissance: 0
-  isCharging: 1
+  isCharging: 0
   BatterieDrain: 0.5
   RalentissementBattery: 0.4
-  tranformMoteur: {fileID: 1263131260860108165}
+  tranformMoteur: {fileID: 3424647720179081632}
   audioMoteur: {fileID: 1765130846195953713}
   audioVague: {fileID: 7194562163720880190}
   BatterieSlider: {fileID: 0}
@@ -1232,12 +1232,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!4 &1263131260860108165 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 1667949670290249814, guid: 658496ddb4beb4d42917d7716c595ac0,
-    type: 3}
-  m_PrefabInstance: {fileID: 478002042290525651}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &890860007949888749
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1319,6 +1313,12 @@ PrefabInstance:
 --- !u!4 &852940683941055238 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 88d7feb43696b4b4e8ada4af8af3d717,
+    type: 3}
+  m_PrefabInstance: {fileID: 890860007949888749}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3424647720179081632 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2583432869981736269, guid: 88d7feb43696b4b4e8ada4af8af3d717,
     type: 3}
   m_PrefabInstance: {fileID: 890860007949888749}
   m_PrefabAsset: {fileID: 0}

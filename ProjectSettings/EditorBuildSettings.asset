@@ -29,4 +29,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Caverne.unity
     guid: f8c79e63ce9f4094aba64c5fae101006
+  - enabled: 1
+    path: Assets/Scenes/proto_LD_Seb.unity
+    guid: b16fe11f287086540a80063387badbb9
   m_configObjects: {}
