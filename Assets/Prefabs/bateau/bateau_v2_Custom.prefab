@@ -944,7 +944,7 @@ MonoBehaviour:
   batterieMax: 100
   batterieRecharge: 5
   BatteriePuissance: 0
-  isCharging: 1
+  isCharging: 0
   BatterieDrain: 0.5
   RalentissementBattery: 0.4
   tranformMoteur: {fileID: 107290104303823603}

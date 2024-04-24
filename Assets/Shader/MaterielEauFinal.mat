@@ -99,7 +99,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - _ActualTime: 11.88
+    - _ActualTime: 39.3
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -140,11 +140,11 @@ Material:
     - _Strength: 0.15
     - _Surface: 0
     - _WaveLength: 74.99981
-    - _WaveLength2: 35.09035
-    - _WaveLength3: 34.728962
-    - _WaveSteepness: 0.118068606
-    - _WaveSteepness2: 0.1090343
-    - _WaveSteepness3: 0.05451715
+    - _WaveLength2: 35.98271
+    - _WaveLength3: 32.051872
+    - _WaveSteepness: 0.29654163
+    - _WaveSteepness2: 0.19827081
+    - _WaveSteepness3: 0.09913541
     - _WorkflowMode: 1
     - _ZWrite: 1
     - _foamSize: 3.19
@@ -156,8 +156,8 @@ Material:
     - _FoamColor: {r: 0.46162152, g: 0.5601845, b: 0.9320359, a: 1}
     - _ShallowWaterColor: {r: 0.16887684, g: 0.17832921, b: 0.6509434, a: 0.65882355}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
-    - _WaveDirection: {r: 0.30903426, g: 0, b: 1, a: 0}
-    - _WaveDirection2: {r: 3.5e-44, g: 0, b: -0.9999926, a: 0}
-    - _WaveDirection3: {r: 0.5271029, g: 0, b: 0.7909661, a: 0}
+    - _WaveDirection: {r: 0.39827088, g: 0, b: 1, a: 0}
+    - _WaveDirection2: {r: 3.5e-44, g: 0, b: -0.49654162, a: 0}
+    - _WaveDirection3: {r: 0.7948128, g: 0, b: 0.701729, a: 0}
     - _WaveDirection_3: {r: 1, g: 0, b: 0.5, a: 0}
   m_BuildTextureStacks: []

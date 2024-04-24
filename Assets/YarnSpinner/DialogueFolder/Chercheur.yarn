@@ -1,0 +1,20 @@
+﻿title: Chercheur
+tags:
+---
+Voix:Qui va Là !?
+Naya:Haaa ! Qu'est-ce que vous faîtes dans cette caverne ?
+Voix:Incroyable vous aussi avez été sauvé par cette créature ?
+Naya:Sauvé ? Non mais il m'a parlé d'un chercheur et d'un enfant avant de m'amener sous les flots.
+Voix:Hé bien ce chercheur semblerait être votre humble interlocuteur.
+Chercheur:Il semblerait que cette créature ai compris les difficultés du jeune serpent.
+Naya:Le serpent ?
+Chercheur:Oui. Le serpent de mer qui erre dans ces eaux. Je pense que cettte caverne est son lieu de naissance.
+Chercheur:L'Umibozu m'y a emmené lors de mon nauffrage. Mais je ne crois pas qu'il ai compris que je ne reste pas par choix.
+Naya:Attend mais il m'a dit qu'il renviendrais.
+Umibozu:Aventurière sans peur à tu tes réponses ? Est tu prête à remonté sous le regard Amaterasu ?
+Chercheur:Laisse moi remonter avec toi s'il te plait j'en ais marre de cette caverne humide et sombre.
+Naya:Bien sur ! Nous somme prêt à ressortir.
+Umibozu:Bien que les flots vous libères voguez à nouveau à sa surface.
+<<ChangeScene2D Proto_LD>>
+<<wait  100>>
+===
