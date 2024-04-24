@@ -338,6 +338,11 @@ public class BateauMouvement : MonoBehaviour
         VieSlider.gameObject.SetActive(true);
     }
 
+    public void AugmenterDrag()
+    {
+        rb.velocity = Vector3.zero;
+    }
+
 
     public void Subscribe()
     {

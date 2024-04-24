@@ -4,7 +4,6 @@ tags:
 
 Umibozu:Suis-je terrifiant ? 
 ->Naya:Oui
-	Umibozu:GNAK Je te cool
 	<<ChangeScene2D Ile_2D>>
 	<<wait 5>>
 ->Naya:Non	

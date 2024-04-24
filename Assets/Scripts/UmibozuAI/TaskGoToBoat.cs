@@ -7,6 +7,7 @@ public class TaskGoToBoat : Node
 {
     private Transform _transform;
     private UnityEngine.AI.NavMeshAgent _agent;
+    private bool dialogueEnCours = false;
 
     public TaskGoToBoat(Transform transform, UnityEngine.AI.NavMeshAgent agent)
     {
@@ -21,10 +22,11 @@ public class TaskGoToBoat : Node
         {
             _agent.SetDestination(boat.position);
         }
-        else if(Vector3.Distance(_transform.position, boat.position) < 35f)
+        else if(!dialogueEnCours && Vector3.Distance(_transform.position, boat.position) < 35f)
         {
             DialogueLauncher.LaunchDialogueFreeze("Umibozu");
             _agent.SetDestination(_transform.position);
+            dialogueEnCours = true;
         }
 
         state = NodeState.RUNNING;
