@@ -1,0 +1,299 @@
+fileFormatVersion: 2
+guid: 88d7feb43696b4b4e8ada4af8af3d717
+ModelImporter:
+  serializedVersion: 22200
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bambou
+    second: {fileID: 2100000, guid: bb024b30a5f672c4aace4197a492b22b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: blanc
+    second: {fileID: 2100000, guid: e86a71185e0bd0946a739cd3af2917fd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bois
+    second: {fileID: 2100000, guid: 764370740e3bc20468665fb567a32abd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bois_coque
+    second: {fileID: 2100000, guid: ab39618bf57d903458ab406fe63a7da5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bouee
+    second: {fileID: 2100000, guid: 86d0cad177544db469a04d67df472886, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal
+    second: {fileID: 2100000, guid: 926c88658bd59f247b636673b00b015e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: metal_echelle
+    second: {fileID: 2100000, guid: 28c076a152fe8ab4694f894a4a49fba7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: panneau
+    second: {fileID: 2100000, guid: 89e253807d62f3e469587e6da81ce55d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tissus
+    second: {fileID: 2100000, guid: c2bb2e0c1cb1ff444bd16a8176ee6d26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: verre
+    second: {fileID: 2100000, guid: cf1ea3b3efe145748bfab6ab64f500ea, type: 2}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bambou_AlbedoTransparency
+    second: {fileID: 2800000, guid: 706d5001443302d45869991f7106fb01, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bambou_MetallicSmoothness
+    second: {fileID: 2800000, guid: 4febcdf27248f6440b92510a2135e3c3, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bambou_Normal
+    second: {fileID: 2800000, guid: f9e6e8b41002c3247adb8d5653a64807, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_blanc_AlbedoTransparency
+    second: {fileID: 2800000, guid: 1847aab61b24dac4982cf01f79459f66, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_blanc_MetallicSmoothness
+    second: {fileID: 2800000, guid: 1c85a3e849c107d4f8805e736514ec84, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_blanc_Normal
+    second: {fileID: 2800000, guid: 4091d489bbd399041b92bb902cf958f4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bois_AlbedoTransparency
+    second: {fileID: 2800000, guid: 750d649995c445446996772b50e2e25d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bois_MetallicSmoothness
+    second: {fileID: 2800000, guid: 007db0af82b604c4fb7ee25f062db7e4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bois_Normal
+    second: {fileID: 2800000, guid: c49fa56c3648b4a41bb10f1743aef18a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bois_coque_AlbedoTransparency
+    second: {fileID: 2800000, guid: f126a02e6dadbda43add444bfcb0159a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bois_coque_MetallicSmoothness
+    second: {fileID: 2800000, guid: 30bbafdcb3cad9f49a46449f7ae7ab15, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bois_coque_Normal
+    second: {fileID: 2800000, guid: c793333f23d350c48ae08f55f1df9ea4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bouee_AlbedoTransparency
+    second: {fileID: 2800000, guid: 85ba62b6bacd806439f7d5e13b41b2bb, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bouee_MetallicSmoothness
+    second: {fileID: 2800000, guid: c2fff23895c34314f9e909607ee1e59a, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_bouee_Normal
+    second: {fileID: 2800000, guid: 41adc0e1e1811584fba1b0433f980a43, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_metal_AlbedoTransparency
+    second: {fileID: 2800000, guid: e31a2cb645e9b384ab5dc426281d7cd4, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_metal_Normal
+    second: {fileID: 2800000, guid: 192b810cb315f6f4a938e76ad2fc4589, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_metal_echelle_AlbedoTransparency
+    second: {fileID: 2800000, guid: d8f4fe9f598f33344a1038de6e43a84d, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_metal_echelle_Normal
+    second: {fileID: 2800000, guid: 9032f581c953c704199f541449ba4af9, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_panneau_AlbedoTransparency
+    second: {fileID: 2800000, guid: dd99236c2ed06b84cb9aff9e645fbe83, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_panneau_MetallicSmoothness
+    second: {fileID: 2800000, guid: 8c8e6b5e230d3b347ac559625c63ac07, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_panneau_Normal
+    second: {fileID: 2800000, guid: e6aad9634e7d4fb499bc211934a24a45, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_tissus_AlbedoTransparency
+    second: {fileID: 2800000, guid: a4c64544583bb0047a14d69ee5aecc22, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_tissus_MetallicSmoothness
+    second: {fileID: 2800000, guid: d5fee866136800240b36d1337c20ebb7, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_tissus_Normal
+    second: {fileID: 2800000, guid: 3f961e95eab72c3409ca989b4f7aa815, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_verre_AlbedoTransparency
+    second: {fileID: 2800000, guid: 5acdd259c85536e40a9a18c3bd352c11, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_verre_MetallicSmoothness
+    second: {fileID: 2800000, guid: 8b8e2f20aa670e547bc13ab02f14eccd, type: 3}
+  - first:
+      type: UnityEngine:Texture2D
+      assembly: UnityEngine.CoreModule
+      name: bateau_tex2_verre_Normal
+    second: {fileID: 2800000, guid: 94068a23c5fee434fb3d06049321702e, type: 3}
+  materials:
+    materialImportMode: 2
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    removeConstantScaleCurves: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importPhysicalCameras: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    nodeNameCollisionStrategy: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    bakeAxisConversion: 0
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    optimizeBones: 1
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVMarginMethod: 1
+    secondaryUVMinLightmapResolution: 40
+    secondaryUVMinObjectScale: 1
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+    strictVertexDataChecks: 0
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  addHumanoidExtraRootOnlyWhenUsingAvatar: 1
+  importBlendShapeDeformPercent: 1
+  remapMaterialsIfMaterialImportModeIsNone: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
