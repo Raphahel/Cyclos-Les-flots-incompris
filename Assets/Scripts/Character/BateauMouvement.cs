@@ -45,7 +45,7 @@ public class BateauMouvement : MonoBehaviour
     [SerializeField]
     private Slider VieSlider;
 
-    private CinemachineVirtualCamera vcam;
+    
 
     //Constante de dommage
     private const int DOMMAGEFAIBLE = 15;
