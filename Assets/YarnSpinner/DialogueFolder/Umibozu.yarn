@@ -6,7 +6,7 @@ tags:
 <<ValideEvenement DejaCroiseUmibozu>>
 
 Umibozu:Suis-je terrifiant ? 
-<<if GetEventState("ValideEvenement")>>
+<<if GetEventState("SolutionUmi")>>
 ->Naya:Oui
 	Umibozu:Alors fuis petite créature terrestre.
 	<<ChangeScene2D Ile_2D>>
@@ -23,7 +23,7 @@ Umibozu:Suis-je terrifiant ?
 	<<wait 5>>
 <<else>>
 ->Naya:Oui
-	Umibozu:Alors fuis petite créature terreuste
+	Umibozu:Alors fuis petite créature terrestre
 	<<ChangeScene2D Ile_2D>>
 	<<wait 5>>
 <<endif>>
