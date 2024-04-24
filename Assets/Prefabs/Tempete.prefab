@@ -43751,6 +43751,7 @@ GameObject:
   - component: {fileID: 675377820064693629}
   - component: {fileID: 7898099251869940110}
   - component: {fileID: 5065678039857988329}
+  - component: {fileID: 4691139692729853053}
   m_Layer: 9
   m_Name: Tempete
   m_TagString: Untagged
@@ -43923,6 +43924,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!65 &4691139692729853053
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6995474207962195119}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 1
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Size: {x: 123.05359, y: 109.47685, z: 126.25447}
+  m_Center: {x: 2.5050986, y: -2.3098245, z: -12.781479}
 --- !u!1 &7137832967787171842
 GameObject:
   m_ObjectHideFlags: 0

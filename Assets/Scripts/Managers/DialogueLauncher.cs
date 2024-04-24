@@ -1,3 +1,4 @@
+using Cinemachine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -10,6 +11,8 @@ public class DialogueLauncher : MonoBehaviour
     public static DialogueLauncher instance = null;
 
     private bool dialogueRunning = false;
+
+    private CinemachineVirtualCamera vcam;
 
     [SerializeField]
     public BateauMouvement boatScript;
@@ -28,6 +31,7 @@ public class DialogueLauncher : MonoBehaviour
             Debug.Log("Instance already exists.");
             Destroy(gameObject);
         }
+        vcam = FindObjectOfType<CinemachineVirtualCamera>();
     }
 
     public static void LaunchDialogueFreeze(string filename)
@@ -43,6 +47,8 @@ public class DialogueLauncher : MonoBehaviour
             boatScript.HideUi();
             runner.onDialogueComplete.AddListener(EndDialogue);
             runner.StartDialogue(filename);
+            vcam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = 0;
+            vcam.GetCinemachineComponent<CinemachinePOV>().m_VerticalAxis.m_MaxSpeed = 0;
             dialogueRunning = true;
         }
     }
