@@ -18,7 +18,7 @@ MonoBehaviour:
     WaveDirection: {x: 0.3, y: 0, z: 1}
     WaveSteepness2: 0.1
     WaveLength2: 35
-    WaveDirection2: {x: 0, y: 0, z: 1}
+    WaveDirection2: {x: 0, y: 0, z: -1}
     WaveSteepness3: 0.05
     WaveLength3: 35
     WaveDirection3: {x: 0.5, y: 0, z: 0.8}
@@ -35,10 +35,10 @@ MonoBehaviour:
   vaguesTempete:
     WaveSteepness: 0.3
     WaveLength: 75
-    WaveDirection: {x: 0.5, y: 0, z: 1}
+    WaveDirection: {x: 0.4, y: 0, z: 1}
     WaveSteepness2: 0.2
     WaveLength2: 36
-    WaveDirection2: {x: 0, y: 0, z: 1}
+    WaveDirection2: {x: 0, y: 0, z: -1}
     WaveSteepness3: 0.1
     WaveLength3: 32
-    WaveDirection3: {x: 1, y: 0, z: 0.3}
+    WaveDirection3: {x: 0.8, y: 0, z: 0.7}
