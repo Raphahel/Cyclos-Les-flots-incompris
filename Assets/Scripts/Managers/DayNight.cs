@@ -12,7 +12,7 @@ public class DayNight : MonoBehaviour
     private bool canChange = true;
 
     [HideInInspector]
-    public bool timePass = true;
+    public bool timePass = false;
 
     private void Update()
     {

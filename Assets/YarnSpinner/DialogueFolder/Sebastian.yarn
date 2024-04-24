@@ -4,6 +4,7 @@ tags:
 <<AddEvenement SiVaincuUmibozu>>
 <<AddEvenement DejaCroiseUmibozu>>
 <<AddEvenement DejaCroiseRay>>
+<<ValideEvenement DejaCroiseSebastian>>
 
 <<if GetEventState("SiVaincuUmibozu")>>
 

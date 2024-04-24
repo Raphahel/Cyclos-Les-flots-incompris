@@ -11,6 +11,9 @@ public class Ile : MonoBehaviour
     public TextMeshProUGUI cadreNom;
     [SerializeField] public string nom;
 
+    [SerializeField] 
+    private string target;
+
     private Controles inputMap;
 
     private bool dockingEnabled = false;
@@ -47,7 +50,7 @@ public class Ile : MonoBehaviour
     {
         if (dockingEnabled)
         {
-            StartCoroutine(UIController.instance.StartFadeToScene2D("Ile_2D"));
+            StartCoroutine(UIController.instance.StartFadeToScene2D(target));
         }
     }
 

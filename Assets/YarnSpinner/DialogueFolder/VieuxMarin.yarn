@@ -4,6 +4,7 @@ tags:
 <<AddEvenement SiVaincuUmibozu>>
 <<AddEvenement DejaCroiseUmibozu>>
 <<AddEvenement DejaCroiseSebastian>>
+<<ValideEvenement DejaCroiseRay>>
 
 <<if GetEventState("SiVaincuUmibozu")>>
 
@@ -38,6 +39,8 @@ Ray:Avant j'aimais me perdre au millieu des eaux pour fuir mes problèmes, puis 
 
 
 <<elseif GetEventState("DejaCroiseSebastian")>>
+
+<<ValideEvenement SolutionUmi>>
 
 Naya:Bonjour… Ray c’est ça ? 
 

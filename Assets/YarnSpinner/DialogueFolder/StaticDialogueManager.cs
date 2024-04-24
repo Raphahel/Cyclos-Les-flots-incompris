@@ -43,6 +43,7 @@ public class StaticDialogueManager : MonoBehaviour
         nameEvent = nameEvent.ToLower();
         if (dictEvenement.ContainsKey(nameEvent))
         {
+            print(nameEvent + " = " + dictEvenement[nameEvent]);
             return dictEvenement[nameEvent];
         }
         else

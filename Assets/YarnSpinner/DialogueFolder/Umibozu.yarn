@@ -1,9 +1,14 @@
 ﻿title: Umibozu
 tags:
 ---
+<<AddEvenement SolutionUmi>>
+
+<<ValideEvenement DejaCroiseUmibozu>>
 
 Umibozu:Suis-je terrifiant ? 
+<<if GetEventState("ValideEvenement")>>
 ->Naya:Oui
+	Umibozu:Alors fuis petite créature terrestre.
 	<<ChangeScene2D Ile_2D>>
 	<<wait 5>>
 ->Naya:Non	
@@ -13,4 +18,13 @@ Umibozu:Suis-je terrifiant ?
 	Naya:Je suis chercheuse ! Je cherche a en apprendre plus sur les… êtres, comme vous ! Et sur notre monde.
 	Umibozu:Un jour de mer houleuse, un chercheur a subi les évagations de l’enfant. Il fut emmené dans une caverne au fin fond de ces flots. Souhaites-tu que je t’y conduise ? 
 	Naya:...Je suppose ?
+	<<ValideEvenement SiVaincuUmibozu>>
+	<<ChangeScene2D Caverne>>
+	<<wait 5>>
+<<else>>
+->Naya:Oui
+	Umibozu:Alors fuis petite créature terreuste
+	<<ChangeScene2D Ile_2D>>
+	<<wait 5>>
+<<endif>>
 ===

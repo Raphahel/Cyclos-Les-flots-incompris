@@ -16,6 +16,7 @@ public class EmbarquerInteraction : AbstractInteractable
         if (canInteract)
         {
             StartCoroutine(UIController.instance.StartFadeToScene(targetScene));
+            StaticDialogueManager.ValideEvenement("DejaPartie");
         }
     }
     
