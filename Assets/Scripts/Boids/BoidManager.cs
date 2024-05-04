@@ -75,8 +75,8 @@ public class BoidManager : MonoBehaviour
         fishTRS = new List<Matrix4x4>();
         fishVelocity = new List<Vector3>();
 
-        SerializedObject s = new SerializedObject(mesh);
-        s.FindProperty("m_IsReadable").boolValue = true;
+        //SerializedObject s = new SerializedObject(mesh); //Don't uncomment that !
+        //s.FindProperty("m_IsReadable").boolValue = true;
         //The mesh is supposed to be readable by default, but you can't be too sure I guess
 
         for (int i = 0; i < maxPopulation; i++)
