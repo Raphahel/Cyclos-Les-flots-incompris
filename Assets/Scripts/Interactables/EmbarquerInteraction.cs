@@ -10,11 +10,14 @@ public class EmbarquerInteraction : AbstractInteractable
 
     [SerializeField]
     private string targetScene;
+
+    private bool isloading = false;
     
     protected override void Interaction(InputAction.CallbackContext context)
     {
-        if (canInteract)
+        if (canInteract && !isloading)
         {
+            isloading = true;
             StartCoroutine(UIController.instance.StartFadeToScene(targetScene));
             StaticDialogueManager.ValideEvenement("DejaPartie");
         }

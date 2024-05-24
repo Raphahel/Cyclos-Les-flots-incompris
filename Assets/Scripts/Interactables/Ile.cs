@@ -18,6 +18,8 @@ public class Ile : MonoBehaviour
 
     private bool dockingEnabled = false;
 
+    private bool isLoading = false;
+
 
     private void Start()
     {
@@ -48,8 +50,9 @@ public class Ile : MonoBehaviour
 
     private void changeScene(InputAction.CallbackContext context)
     {
-        if (dockingEnabled)
+        if (dockingEnabled && !isLoading)
         {
+            isLoading = true;
             StartCoroutine(UIController.instance.StartFadeToScene2D(target));
         }
     }
