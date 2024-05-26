@@ -459,22 +459,22 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 202.06
+      value: 229
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.17
+      value: 1.74
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -17.74
+      value: -29.9
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.99944127
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
@@ -484,7 +484,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.03342489
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
@@ -499,7 +499,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
+      value: 3.831
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 658496ddb4beb4d42917d7716c595ac0,
         type: 3}
@@ -993,7 +993,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 748544779367639170}
   serializedVersion: 4
-  m_Mass: 1
+  m_Mass: 0.2
   m_Drag: 1
   m_AngularDrag: 0.2
   m_CenterOfMass: {x: 0, y: 0, z: 0}
@@ -1007,7 +1007,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -1026,7 +1026,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vie: 100
   maxRotationSpeed: 4
-  acceleration: 24
+  acceleration: 27
   vitesseMax: 500
   batterieMax: 100
   batterieRecharge: 5

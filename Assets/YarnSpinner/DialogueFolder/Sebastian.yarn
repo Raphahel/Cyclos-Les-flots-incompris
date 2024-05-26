@@ -4,6 +4,21 @@ tags:
 <<AddEvenement SiVaincuUmibozu>>
 <<AddEvenement DejaCroiseUmibozu>>
 <<AddEvenement DejaCroiseRay>>
+<<if GetEventState("DejaCroiseSebastian") == false>>
+Sebastian:Salut ! Je ne t’ai jamais vu dans le coin ! 
+
+Naya:Oui, je viens de partir, c’est la première fois que j’ai mon propre bateau et que je m’éloigne réellement de mon île à vrai dire ! 
+
+Sebastian:Oh, et quel bon soleil pousse ton navire sur ces eaux ? 
+
+Naya:Je suis Zoologiste ! Je cherche a étudier les monstres qui peuplent l’archipel
+
+Sebastian:Les monstres ? Heu, tu sais ce qu’ils font aux navires qui les approchent trop ? 
+
+Naya:Je sais oui, mais c’est ça qui m’intéresse ! Pourquoi ils font ça, essayer de les comprendre et d’en apprendre plus sur eux ! C’est le but de tout chercheur. 
+
+Sebastian:Je connaissais un chercheur…. il s’est fait attraper par le serpent géant un jour et personne ne l’a jamais revu… Tu pourrais risquer bien plus que de perdre ton bateau, même moi je considère avoir eu de la chance.
+<<else>>
 <<ValideEvenement DejaCroiseSebastian>>
 
 <<if GetEventState("SiVaincuUmibozu")>>
@@ -47,20 +62,6 @@ Sebastian:Bonne chance, il n’aime pas trop parler de tout ça, si tu le cherch
 
 <<else>>
 
-Sebastian:Salut ! Je ne t’ai jamais vu dans le coin ! 
-
-Naya:Oui, je viens de partir, c’est la première fois que j’ai mon propre bateau et que je m’éloigne réellement de mon île à vrai dire ! 
-
-Sebastian:Oh, et quel bon soleil pousse ton navire sur ces eaux ? 
-
-Naya:Je suis Zoologiste ! Je cherche a étudier les monstres qui peuplent l’archipel
-
-Sebastian:Les monstres ? Heu, tu sais ce qu’ils font aux navires qui les approchent trop ? 
-
-Naya:Je sais oui, mais c’est ça qui m’intéresse ! Pourquoi ils font ça, essayer de les comprendre et d’en apprendre plus sur eux ! C’est le but de tout chercheur. 
-
-Sebastian:Je connaissais un chercheur…. il s’est fait attraper par le serpent géant un jour et personne ne l’a jamais revu… Tu pourrais risquer bien plus que de perdre ton bateau, même moi je considère avoir eu de la chance.
-
 Naya:Oh, tu as déjà eu affaire à un monstre marin ?  
 
 Sebastian:Oui… Ca m’a pris du temps avant d’oser me remettre à naviguer, à présent j’ai surmonté ça mais… j’essaye de rester le plus loin possible de cette tempête. 
@@ -80,6 +81,7 @@ Naya:Bon d’accord, pour te remercier du tuyau, mais il a intérêt à être sy
 
 Sebastian:Oh t’en fais pas, c’est un vieux grand-père super sympa ! 
 
+<<endif>>
 <<endif>>
 <<endif>>
 ===

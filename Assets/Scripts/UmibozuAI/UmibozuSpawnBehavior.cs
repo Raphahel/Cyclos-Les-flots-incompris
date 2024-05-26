@@ -21,10 +21,12 @@ public class UmibozuSpawnBehavior : MonoBehaviour
 
             if(timer >= 10f)
             {
+                //GetSpawnPosition a été modifié temporairement pour faire fonctionner le proto (bug d'infinity)
                 Vector3 spawnPosition = getSpawnPosition();
                 if (umibozuInst == null)
                 {
                     umibozuInst = Instantiate(UmibozuPrefab);
+                    
                     umibozuInst.transform.position = spawnPosition;
                 }
             }
@@ -66,10 +68,12 @@ public class UmibozuSpawnBehavior : MonoBehaviour
 
     public Vector3 getSpawnPosition()
     {
+
         while(true)
         {
             Rect r = mainCamera.rect;
-            Vector3 spawnPosition = RandomNavSphere(transform.position, trigger.size.x, -1);
+            //Augmenter un peu la taille de la trigger semble fix le bug d'infinité à tester plus rigoureusement
+            Vector3 spawnPosition = RandomNavSphere(transform.position, trigger.size.x + 10, -1);
             if (!r.Contains(spawnPosition))
             {
                 return spawnPosition;

@@ -299,9 +299,15 @@ public class BateauMouvement : MonoBehaviour
     //Fonction de modification des flotteurs de Rotation
     public void AddFlotteur() { nbFlotteursRota++; }
     public void FlottImmerge() { nbFlotteurImmergé++; }
-    public void FlottEmerge() { nbFlotteurImmergé--; }  
-    
-    
+    public void FlottEmerge() { nbFlotteurImmergé--; }
+
+
+    public void ResetInput()
+    {
+        forceVitesse = 0;
+        directionRotation = 0;
+    }
+
 
     //Section de gestion des inputs :
     private void StartMove(InputAction.CallbackContext context)

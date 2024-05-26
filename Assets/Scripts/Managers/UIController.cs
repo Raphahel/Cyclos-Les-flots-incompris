@@ -40,7 +40,6 @@ public class UIController : MonoBehaviour
 
     public void FadeToScene2D(string scene)
     {
-        DayNightManager.StopTime();
         StartCoroutine(StartFadeToScene2D(scene));
     }
 
@@ -62,6 +61,7 @@ public class UIController : MonoBehaviour
     {
         AsyncOperation loading = SceneManager.LoadSceneAsync(scene);
         loading.allowSceneActivation = false;
+        DayNightManager.StopTime();
         yield return StartCoroutine(FadeToBlack(fadeToBlack, fadeSpeed));
         loading.allowSceneActivation = true;
     }

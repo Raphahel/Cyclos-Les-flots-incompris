@@ -45,6 +45,7 @@ public class DialogueLauncher : MonoBehaviour
         {
             boatScript.Unsubscribe();
             boatScript.HideUi();
+            boatScript.ResetInput();
             runner.onDialogueComplete.AddListener(EndDialogue);
             runner.StartDialogue(filename);
             vcam.GetCinemachineComponent<CinemachinePOV>().m_HorizontalAxis.m_MaxSpeed = 0;

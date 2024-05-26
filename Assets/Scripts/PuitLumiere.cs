@@ -19,6 +19,14 @@ public class PuitLumière : MonoBehaviour
         lumiere = gameObject.GetComponentInChildren<Light>();
         particle = gameObject.GetComponent<ParticleSystem>();
         coll = gameObject.GetComponent<Collider>();
+        if (DayNightManager.isNight)
+        {
+            Eteint();
+        }
+        else
+        {
+            Allume();
+        }
     }
 
     private void Update()
