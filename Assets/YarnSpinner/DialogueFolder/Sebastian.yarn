@@ -18,8 +18,19 @@ Sebastian:Les monstres ? Heu, tu sais ce qu’ils font aux navires qui les appro
 Naya:Je sais oui, mais c’est ça qui m’intéresse ! Pourquoi ils font ça, essayer de les comprendre et d’en apprendre plus sur eux ! C’est le but de tout chercheur. 
 
 Sebastian:Je connaissais un chercheur…. il s’est fait attraper par le serpent géant un jour et personne ne l’a jamais revu… Tu pourrais risquer bien plus que de perdre ton bateau, même moi je considère avoir eu de la chance.
-<<else>>
 <<ValideEvenement DejaCroiseSebastian>>
+<<jump MainSeb>>
+<<else>>
+
+<<jump MainSeb>>
+
+<<endif>>
+===
+
+title : MainSeb
+tags :
+---
+
 
 <<if GetEventState("SiVaincuUmibozu")>>
 
@@ -32,6 +43,7 @@ Naya:Il n'y a pas vraiment de secret, il fallait juste lui dire ne pas avoir peu
 Sebastian:Je me sens bête d'avoir perdu un bateau pour ça du coup...
 
 Naya:Au moins toi ça ne t'a pas découragé... je connais une marchande qui ne s'en est jamais remise 
+
 
 <<elseif GetEventState("DejaCroiseUmibozu")>>
 Naya:J’ai vu le monstre ! Dans la tempête ! 
@@ -81,7 +93,6 @@ Naya:Bon d’accord, pour te remercier du tuyau, mais il a intérêt à être sy
 
 Sebastian:Oh t’en fais pas, c’est un vieux grand-père super sympa ! 
 
-<<endif>>
 <<endif>>
 <<endif>>
 ===
